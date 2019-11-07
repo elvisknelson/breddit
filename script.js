@@ -30,7 +30,7 @@ function validate(e)
     var username = document.getElementById("newusername").value;
     var password1 = document.getElementById("newpassword1").value;
     var password2 = document.getElementById("newpassword2").value;
-
+    
     if(username.length < 8)
     {
         throwError("Username must be 8 characters or longer", e);

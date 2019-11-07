@@ -22,8 +22,8 @@
                 <?php endif ?>
                 <?php if(!isset($_SESSION['user'])): ?>
                     <div class="logininput">
-                        <input name="name" type="text" id="title" placeholder="username"/>
-                        <input name="password" type="password" id="title" placeholder="password"/>
+                        <input name="name" type="text" id="loginuser" placeholder="username"/>
+                        <input name="password" type="password" id="loginpassword" placeholder="password"/>
                     </div>
                     <a class="btn btn-default btn-sm btn-square loginbtn" href="newuser.php">Sign Up</a>
                     <button class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Login">Login</button>

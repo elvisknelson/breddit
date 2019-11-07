@@ -13,18 +13,24 @@
 </head>
 <body>
     <div id="header">
-        <a href="index.php"><img src="images/snoo.png" alt="Logo" class="logo"></a>
-        <a href="index.php"><h1>breddit</h1></a>
+        <div class="flex">
+            <a href="index.php"><img src="images/snoo.png" alt="Logo" class="logo"></a>
+            <a href="index.php"><h1>breddit</h1></a>
+            <ul id="menu">
+                <a href="index.php" class="active"><li>new</li></a>
+                <a href="index.php" class=""><li>hot</li></a>
+                <a href="index.php" class=""><li>best</li></a>
+                <a href="index.php" class=""><li>rising</li></a>
+                <a href="index.php" class=""><li>controversial</li></a>
+                <a href="index.php" class=""><li>top</li></a>
+                <a href="index.php" class=""><li>gilded</li></a>
+            </ul>
+        </div>
         
-        <ul id="menu">
-            <a href="index.php" class="active"><li>new</li></a>
-            <a href="index.php" class=""><li>hot</li></a>
-            <a href="index.php" class=""><li>best</li></a>
-            <a href="index.php" class=""><li>rising</li></a>
-            <a href="index.php" class=""><li>controversial</li></a>
-            <a href="index.php" class=""><li>top</li></a>
-            <a href="index.php" class=""><li>gilded</li></a>
-        </ul>
+        <div class="loginheader">
+            <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="newuser.php">sign up</a> in seconds. <a href="#">|English|</a></p>
+        </div>
     </div>
+    <script src="focus.js"></script>
 </body>
 </html>

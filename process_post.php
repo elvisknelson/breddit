@@ -72,7 +72,7 @@
                     $statement = $db->prepare($query);
                     $statement->bindValue(':title', $title);
                     $statement->bindValue(':user', $row['id']);
-                    $statement->bindValue(':content', htmlspecialchars($content, ENT_QUOTES));
+                    $statement->bindValue(':content', $content);
                     $statement->bindValue(':subbreddit', $subbreddit);
                     $statement->execute();
                 }
@@ -138,19 +138,19 @@
                     }
                     else
                     {
-                        header('Location: index.php?invaliduser=1');
+                        header('Location: index.php');
                     }
 
                     header('Location: index.php');
                 }
                 catch (Exception $e)
                 {
-                    header('Location: index.php?invaliduser=1');
+                    header('Location: index.php');
                 }
             }
             else
             {
-                header('Location: index.php?invaliduser=1');
+                header('Location: index.php');
             }
         }
 

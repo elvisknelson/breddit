@@ -95,12 +95,32 @@ fieldset.createuser{
 }
 .create input{
     width: 100%;
+    background-color: #2d2d2d;
+    color: aliceblue;
+    border-color: cornflowerblue;
 }
 .create textarea{
     width: 100%;
     background-color: #2d2d2d;
     border-color: cornflowerblue;
     color: white;
+}
+
+.loginheader{
+    background-color: #545454;
+    display: inline-table;
+    border-radius: 0px 0px 10px 10px;
+    color: aliceblue;
+}
+
+.loginheader p{
+    margin: 0;
+    padding: 0px 15px 4px 15px;
+}
+
+.loginheader a{
+    color: #0000ff8a;
+    font-weight: bold;
 }
 
 .create p{
@@ -245,10 +265,15 @@ fieldset.createuser{
 #header{
     width: 100%;
     display: flex;
+    justify-content: space-between;
     background-color: rgba(29, 29, 29, 0.116);
 }
 
-#header a{
+.flex{
+    display: flex;
+}
+
+.flex a{
     color: black;
     text-decoration: none;
 }
@@ -313,7 +338,7 @@ html{
     background-color: #363434;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1150px) {
     #sidebar{
         display: none;
     }
