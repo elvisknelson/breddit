@@ -1,14 +1,14 @@
 <?php
-    require 'connect.php';
-    require 'utility.php';
-    session_start();
+  require 'connect.php';
+  require 'utility.php';
+  session_start();
 
-    $username = $_GET['username'];
+  $username = $_GET['username'];
 
-    $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbreddit, c.thumbnail, c.posttype, u.username FROM content c JOIN users u ON c.userid = u.id WHERE u.username = (:username)";
-    $values = $db->prepare($query);
-    $values->bindValue(':username', $username);
-    $values->execute();
+  $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbreddit, c.thumbnail, c.posttype, u.username FROM content c JOIN users u ON c.userid = u.id WHERE u.username = (:username)";
+  $values = $db->prepare($query);
+  $values->bindValue(':username', $username);
+  $values->execute();
 ?>
 
 <!doctype html>

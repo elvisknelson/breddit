@@ -1,7 +1,7 @@
 <?php
-  session_start();
   require 'connect.php';
   require 'utility.php';
+  session_start();
 
   if(!isset($_SESSION['sort'])) {
     $sort = 'date';
@@ -55,7 +55,7 @@
                 <div class="comments">
                   <p>
                     <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
-                    <a href="">crosspost</a> <?php if(isset($_SESSION)): ?><a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete<?php endif ?></a>
+                    <a href="">crosspost</a> <?php if($mod == 'Moderator'): ?><a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete<?php endif ?></a>
                   </p>
                 </div>
               </div>

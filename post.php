@@ -1,7 +1,7 @@
 <?php
-    session_start();
     require 'connect.php';
     require 'utility.php';
+    session_start();
 
     $id = $_GET['id'];
     

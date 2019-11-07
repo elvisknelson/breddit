@@ -1,5 +1,12 @@
 <?php
+    $user = null;
+    $mod = null;
 
+    if(!empty($_SESSION))
+    {
+        $user = $_SESSION['user']['name'];
+        $mod = $_SESSION['user']['mod'] ? 'Moderator' : 'User';
+    }
 ?>
 
 <!DOCTYPE html>
@@ -26,10 +33,15 @@
                 <a href="index.php" class=""><li>gilded</li></a>
             </ul>
         </div>
-        
-        <div class="loginheader">
-            <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="newuser.php">sign up</a> in seconds. <a href="#">|English|</a></p>
-        </div>
+        <?php if($user == null): ?>
+            <div class="loginheader">
+                <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="newuser.php">sign up</a> in seconds. <a href="#">|English|</a></p>
+            </div>
+        <?php else: ?>
+            <div class="loginheader">
+                <p><?= $user ?> | <a href="index.php"><img src="images/snoo.png" alt="Logo"></a> | <?= $mod ?></a></p>
+            </div>
+        <?php endif ?>
     </div>
     <script src="focus.js"></script>
 </body>

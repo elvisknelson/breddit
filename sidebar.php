@@ -28,13 +28,13 @@
                     <a class="btn btn-default btn-sm btn-square loginbtn" href="newuser.php">Sign Up</a>
                     <button class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Login">Login</button>
                 <?php else: ?>
-                    <button class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Logout">Logout</button>
+                    <button class="btn btn-default btn-sm btn-square loginbtn" id="logoutbtn" type="submit" name="command" value="Logout">Logout</button>
                 <?php endif ?>
             </fieldset>
         </form>
         <?php if(isset($_SESSION['user'])): ?>
-        <div class="submitlink"><a href="create.php?link=1"><p>Submit a new link</p></a></div>
-        <div class="submitlink"><a href="create.php?text=1"><p>Submit a new text post</p></a></div>
+            <div class="submitlink"><a href="create.php?link=1"><p>Submit a new link</p></a></div>
+            <div class="submitlink"><a href="create.php?text=1"><p>Submit a new text post</p></a></div>
         <?php endif ?>
         <a href="https://www.reddit.com/premium"><img src="images/bredditad.png" alt="Img"></a>
     </div>

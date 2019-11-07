@@ -111,6 +111,12 @@ fieldset.createuser{
     display: inline-table;
     border-radius: 0px 0px 10px 10px;
     color: aliceblue;
+    font-size: 13px;
+}
+
+.loginheader img{
+    width: 15px;
+    margin-top: -3px;
 }
 
 .loginheader p{

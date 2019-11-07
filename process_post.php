@@ -126,7 +126,7 @@
                     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $password = $_POST['password'];
     
-                    $query = "SELECT id, username, password FROM users WHERE username = (:user)";
+                    $query = "SELECT id, username, moderator, password FROM users WHERE username = (:user)";
                     $values = $db->prepare($query);
                     $values->bindValue(':user', $name);
                     $values->execute();
@@ -134,7 +134,7 @@
     
                     if($name == $row['username'] && password_verify($password, $row['password']))
                     {
-                        $_SESSION['user'] = [ 'name' => $name, 'password' => $password, 'id' => $row['id'], 'mod' => true ];
+                        $_SESSION['user'] = [ 'name' => $name, 'id' => $row['id'], 'mod' =>  $row['moderator'] ];
                     }
                     else
                     {
@@ -159,13 +159,26 @@
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
+            $ismod = false;
 
-            $query     = "INSERT INTO users (username, password) values (:name, :password)";
+            if($username == 'elfishpro' || $username == 'admin')
+            {
+                $ismod = true;
+            }
+
+            $query     = "INSERT INTO users (username, password, moderator) values (:name, :password, :moderator)";
             $statement = $db->prepare($query);
             $statement->bindValue(':name', $username);
             $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
+            $statement->bindValue(':moderator', $ismod);
             $statement->execute();
-            $_SESSION['user'] = [ 'name' => $username, 'password' => $password1,'mod' => true ];
+
+            $query = "SELECT id FROM users WHERE username = (:user)";
+            $values = $db->prepare($query);
+            $values->bindValue(':user', $username);
+            $values->execute();
+            $row = $values->fetch();
+            $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
 
             header('Location: index.php');
            
