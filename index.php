@@ -2,8 +2,6 @@
   session_start();
   require 'connect.php';
   require 'utility.php';
-  include_once 'Mobile_Detect.php';
-  $detect = new Mobile_Detect;
 
   if(!isset($_GET['sort'])) {
     $sort = 'votes';
