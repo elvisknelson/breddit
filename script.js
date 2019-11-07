@@ -1,26 +1,35 @@
-$(document).ready(function(){
-   
-    $(window).scroll(function() {
+function hasSpaces(s)
+{
+    return s.indexOf(' ') >= 0;
+}
 
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 50) 
-        {
-            $(document).ready(function() {
+function throwError(er, e)
+{
+    e.preventDefault();
+    document.getElementById("errormessage").innerHTML = er;
+}
 
-                // If cookie is set, scroll to the position saved in the cookie.
-                if ( $.cookie("scroll") !== null ) {
-                    $(document).scrollTop( $.cookie("scroll") );
-                }
-            
-                // When a button is clicked...
-                $('#vote').on("click", function() {
-            
-                    // Set a cookie that holds the scroll position.
-                    $.cookie("scroll", $(document).scrollTop() );
-            
-                });
-            
-            });
-        }
-    });
+function validate(e)
+{
+    var username = document.getElementById("newusername").value;
+    var password1 = document.getElementById("newpassword1").value;
+    var password2 = document.getElementById("newpassword2").value;
 
-});
+    if(hasSpaces(username))
+    {
+        throwError("Username cannot have spaces", e);
+    }
+
+    if(password1 != password2)
+    {
+        throwError("Passwords did not match", e);
+    }
+}
+
+function load()
+{
+    document.getElementById("createnewuser").addEventListener("click", validate);
+}
+
+
+document.addEventListener("DOMContentLoaded", load());

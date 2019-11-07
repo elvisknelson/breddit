@@ -3,13 +3,13 @@
   require 'connect.php';
   require 'utility.php';
 
-  if(!isset($_GET['sort'])) {
-    $sort = 'votes';
+  if(!isset($_SESSION['sort'])) {
+    $sort = 'date';
   } else {
-    $sort = $_GET['sort'];
+    $sort = $_SESSION['sort'];
   }
 
-  $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username FROM content c JOIN users u ON c.userid = u.id order by $sort desc";
+  $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid FROM content c JOIN users u ON c.userid = u.id order by $sort desc";
   $values = $db->prepare($query);
   $values->execute();
 ?>
@@ -54,7 +54,7 @@
                 </div>
                 <div class="comments">
                   <p>
-                    <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&postid=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
+                    <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
                     <a href="">crosspost</a> <?php if(isset($_SESSION)): ?><a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete<?php endif ?></a>
                   </p>
                 </div>
@@ -69,6 +69,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
   </body>
 </html>

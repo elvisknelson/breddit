@@ -101,6 +101,22 @@
             }
         }
 
+        if($_POST['command'] == 'Comment')
+        {
+            $postid = filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $userid = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $query     = "INSERT INTO comments (content, userid, votes, postid) VALUES (:content, :userid, 1, :postid)";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':content', $content);
+            $statement->bindValue(':userid', $userid);
+            $statement->bindValue(':postid', $postid);
+            $statement->execute();
+
+            header('Location: post.php?id='.$postid.'');
+        }
+
         if($_POST['command'] == 'Login')
         {
             if(!empty(trim($_POST['name'])) && !empty(trim($_POST['password'])))
@@ -110,7 +126,7 @@
                     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $password = $_POST['password'];
     
-                    $query = "SELECT username, password FROM users WHERE username = (:user)";
+                    $query = "SELECT id, username, password FROM users WHERE username = (:user)";
                     $values = $db->prepare($query);
                     $values->bindValue(':user', $name);
                     $values->execute();
@@ -118,11 +134,11 @@
     
                     if($name == $row['username'] && password_verify($password, $row['password']))
                     {
-                        $_SESSION['user'] = [ 'name' => $name, 'password' => $password,'mod' => true ];
+                        $_SESSION['user'] = [ 'name' => $name, 'password' => $password, 'id' => $row['id'], 'mod' => true ];
                     }
                     else
                     {
-                        header('Location: index.php?invaliduser=1');    
+                        header('Location: index.php?invaliduser=1');
                     }
 
                     header('Location: index.php');
@@ -144,21 +160,15 @@
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
 
-            if($password1 === $password2 && count(explode(' ', $username)) <= 1)
-            {
-                $query     = "INSERT INTO users (username, password) values (:name, :password)";
-                $statement = $db->prepare($query);
-                $statement->bindValue(':name', $username);
-                $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
-                $statement->execute();
-                $_SESSION['user'] = [ 'name' => $username, 'password' => $password1,'mod' => true ];
+            $query     = "INSERT INTO users (username, password) values (:name, :password)";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':name', $username);
+            $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
+            $statement->execute();
+            $_SESSION['user'] = [ 'name' => $username, 'password' => $password1,'mod' => true ];
 
-                 header('Location: index.php');
-            }
-            else
-            {
-                header('Location: index.php?invaliduser=1');
-            }
+            header('Location: index.php');
+           
         }
 
         if($_POST['command'] == 'Logout')

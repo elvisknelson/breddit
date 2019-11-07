@@ -63,6 +63,11 @@ fieldset.login{
     margin: 15px 3px 10px 0;
     background-color: #3e3e3e;
     border: black 1px solid;
+    
+}
+
+fieldset.login *{
+    width: -moz-available;
 }
 
 fieldset.createpost{

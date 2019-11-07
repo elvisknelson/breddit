@@ -17,13 +17,13 @@
         <a href="index.php"><h1>breddit</h1></a>
         
         <ul id="menu">
-            <a href="index.php?sort=date" class="active"><li>new</li></a>
-            <a href="" class=""><li>hot</li></a>
-            <a href="index.php?sort=votes" class=""><li>best</li></a>
-            <a href="" class=""><li>rising</li></a>
-            <a href="" class=""><li>controversial</li></a>
-            <a href="" class=""><li>top</li></a>
-            <a href="" class=""><li>gilded</li></a>
+            <a href="index.php" class="active"><li>new</li></a>
+            <a href="index.php" class=""><li>hot</li></a>
+            <a href="index.php" class=""><li>best</li></a>
+            <a href="index.php" class=""><li>rising</li></a>
+            <a href="index.php" class=""><li>controversial</li></a>
+            <a href="index.php" class=""><li>top</li></a>
+            <a href="index.php" class=""><li>gilded</li></a>
         </ul>
     </div>
 </body>

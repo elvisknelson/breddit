@@ -3,18 +3,24 @@
     require 'utility.php';
     session_start();
 
-    $postid = $_GET['postid'];
+    $id = $_GET['id'];
+
+    if(isset($_SESSION['user']))
+    {
+      $logUser = $_SESSION['user']['id'];
+    }
+    
     $subbreddit = $_GET['subbreddit'];
     
     $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbreddit, c.imagename, c.posttype, u.username FROM content c JOIN users u ON c.userid = u.id WHERE c.id = :postID";
     $postStatement = $db->prepare($query);
-    $postStatement->bindValue(':postID', $postid);
+    $postStatement->bindValue(':postID', $id);
     $postStatement->execute();
     $post = $postStatement->fetch();
 
     $query = "SELECT c.id, c.content, c.userid, c.votes, c.postid, u.username FROM comments c JOIN users u ON u.id = c.userid WHERE postid = :postID";
     $values = $db->prepare($query);
-    $values->bindValue(':postID', $postid);
+    $values->bindValue(':postID', $id);
     $values->execute();
 ?>
 
@@ -54,7 +60,7 @@
             </div>
           </div>
 
-          <form action="process_post.php" method="post" enctype="multipart/form-data">
+          <form action="process_post.php?postid=<?= $id ?>&user=<?= $_SESSION['user']['id'] ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />
             <fieldset class="commentpost">
               <div class="create">
@@ -76,7 +82,7 @@
                   <a href="" class="fa fa-caret-down" style="font-size:25px"></a>
               </div>
               <div class="flexdiv">
-                <div class="submitted"><p><a href="userindex.php?username=<?= $row['username'] ?>"><?= $post['username'] ?></a> <?= $row['votes'] ?> points</p></div>
+                <div class="submitted"><p><a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> <?= $row['votes'] ?> points</p></div>
                 <div class="postheader"><p><?= $row['content'] ?></p></div>
                 <div class="comments"><p><a href="">permalink</a> <a href="">embed</a> <a href="">save</a> <a href="">report</a> <a href="">reply</a></div>
                 <div id="newcomment">

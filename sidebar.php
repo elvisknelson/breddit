@@ -26,14 +26,16 @@
                         <input name="password" type="password" id="title" placeholder="password"/>
                     </div>
                     <a class="btn btn-default btn-sm btn-square loginbtn" href="newuser.php">Sign Up</a>
-                    <input class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Login" />
+                    <button class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Login">Login</button>
                 <?php else: ?>
-                    <input class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Logout" />
+                    <button class="btn btn-default btn-sm btn-square loginbtn" type="submit" name="command" value="Logout">Logout</button>
                 <?php endif ?>
             </fieldset>
         </form>
+        <?php if(isset($_SESSION['user'])): ?>
         <div class="submitlink"><a href="create.php?link=1"><p>Submit a new link</p></a></div>
         <div class="submitlink"><a href="create.php?text=1"><p>Submit a new text post</p></a></div>
+        <?php endif ?>
         <a href="https://www.reddit.com/premium"><img src="images/bredditad.png" alt="Img"></a>
     </div>
 </body>

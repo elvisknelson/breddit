@@ -4,11 +4,21 @@
     require 'utility.php';
 
     $id = $_GET['id'];
+    
+    if(isset($_SESSION['user']))
+    {
+      $logUser = $_SESSION['user']['id'];
+    }
 
     $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.posttype, c.imagename, u.username FROM content c JOIN users u ON c.userid = u.id WHERE c.id = :id";
     $values = $db->prepare($query);
     $values->bindValue(':id', $id);
     $values->execute();
+
+    $query = "SELECT c.id, c.content, c.userid, c.votes, c.postid, u.username FROM comments c JOIN users u ON u.id = c.userid WHERE postid = :postID";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':postID', $id);
+    $statement->execute();
 ?>
 
 <!doctype html>
@@ -47,7 +57,7 @@
                 </div>
             <?php endwhile ?>
 
-            <form action="process_post.php" method="post" enctype="multipart/form-data">
+            <form action="process_post.php?postid=<?= $id ?>&user=<?= $logUser ?>" method="post" enctype="multipart/form-data">
               <input type="hidden" name="action" value="submit" />
               <fieldset class="commentpost">
                 <div class="create">
@@ -61,6 +71,36 @@
                 </p>
               </fieldset>
             </form>
+
+            <?php while ($row = $statement->fetch()): ?>
+            <div class="comment">
+              <div class="votes">
+                  <a href="" class="fa fa-caret-up" style="font-size:25px"></a>
+                  <a href="" class="fa fa-caret-down" style="font-size:25px"></a>
+              </div>
+              <div class="flexdiv">
+                <div class="submitted"><p><a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> <?= $row['votes'] ?> points</p></div>
+                <div class="postheader"><p><?= $row['content'] ?></p></div>
+                <div class="comments"><p><a href="">permalink</a> <a href="">embed</a> <a href="">save</a> <a href="">report</a> <a href="">reply</a></div>
+                <div id="newcomment">
+                  <form action="process_post.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="action" value="submit" />
+                    <fieldset class="commentpost">
+                      <div class="create">
+                          <p>
+                            <textarea name="content"></textarea>
+                          </p>
+                      </div>
+                      <p>
+                      <input class="btn-sm" type="submit" name="command" value="Comment" />
+                      <input class="btn-sm" type="reset" name="command"/>
+                      </p>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <?php endwhile ?>
         </div>
 
         <?php include 'sidebar.php'; ?>
