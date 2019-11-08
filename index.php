@@ -31,17 +31,21 @@
         <div id="content">
           <?php while ($row = $values->fetch()): ?>
             <div class="post">
+
               <div class="votes">
                 <a href="process_post.php?vote=1&postid=<?= $row['id'] ?>" class="fa fa-caret-up" style="font-size:25px"></a>
                 <p class="numvotes"><?= thousandsFormat($row['votes'] - $row['downvotes']) ?></p>
                 <a href="process_post.php?vote=2&postid=<?= $row['id'] ?>" class="fa fa-caret-down" style="font-size:25px"></a>
               </div>
+
               <div class="imagepost">
                 <a href="post.php?id=<?= $row['id'] ?>">
                   <img src="img-posts/<?= $row['thumbnail'] ?>" alt="Post" class="align">
                 </a>
               </div>
+              
               <div class="flexdiv">
+
                 <div class="postheader">
                   <h5>
                     <a href="post.php?id=<?= $row['id'] ?>">
@@ -49,16 +53,26 @@
                     </a>
                   </h5>
                 </div>
+
                 <div class="submitted">
                   <p>Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a></p>
                 </div>
+
                 <div class="comments">
                   <p>
                     <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
                     <a href="">crosspost</a> <?php if($mod == 'Moderator'): ?><a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete<?php endif ?></a>
                   </p>
                 </div>
+
+                <div class="fullimagepost">
+                  <a href="post.php?id=<?= $row['id'] ?>">
+                    <img src="img-posts/<?= $row['imagename'] ?>" alt="Post" class="align">
+                  </a>
+                </div>
+
               </div>
+              
             </div>
           <?php endwhile ?>
         </div>

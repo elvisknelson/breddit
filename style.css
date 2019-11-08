@@ -125,7 +125,7 @@ fieldset.createuser{
 }
 
 .loginheader a{
-    color: #0000ff8a;
+    color: #ff4500;
     font-weight: bold;
 }
 
@@ -219,6 +219,10 @@ fieldset.createuser{
     margin: 0px 12px 0 0;
     display: flex;
     align-items: center;
+}
+
+.fullimagepost{
+    display: none;
 }
 
 .logo{
@@ -324,8 +328,8 @@ fieldset.createuser{
 .footer{
     background-color: #363434;
     display: flex;
-    font-size: small;
-    padding-top: 500px;
+    font-size: x-small;
+    padding-top: 700px;
     flex-direction: column;
     align-items: center;
     color: aliceblue;
@@ -359,6 +363,18 @@ html{
 
     #content{
         width: 100%;
+    }
+
+    .imagepost{
+        display: none;
+    }
+
+    .fullimagepost{
+        display: block;
+    }
+
+    .fullimagepost img{
+        max-width: 95%;
     }
 
     .post{
