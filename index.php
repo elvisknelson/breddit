@@ -84,7 +84,7 @@
                   <div><a class="fas fa-arrow-up" href=""></a></div>
                   <div><a class="fas fa-arrow-down" href=""></a></div>
                   <div><a class="fas fa-times" href=""></a></div>
-                  <div><a class="fas fa-star" href=""></a></div>
+                  <div><a class="fas fa-meteor" href=""></a></div>
                   <div><a class="fas fa-share" href=""></a></div>
                   <div><a class="fas fa-ellipsis-v" href=""></a></div>
                 </div>

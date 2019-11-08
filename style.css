@@ -421,6 +421,10 @@ html{
         display: none;
     }
 
+    .postheader, .submitted{
+        padding: 0 0 5px 11px;
+    }
+
     .post{
         padding: 0 15px 0 15px;
     }
