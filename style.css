@@ -241,7 +241,7 @@ fieldset.createuser{
 
 .votes{
     float: left;
-    margin: 0px 19px 0 12px;
+    margin: 0px 35px 0 7px;
     max-height: 65px;
     max-width: 16px;
     justify-items: center;
@@ -251,7 +251,7 @@ fieldset.createuser{
 
 .numvotes{
     font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
     margin: 0;
 }
 

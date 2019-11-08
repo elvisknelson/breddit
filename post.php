@@ -62,7 +62,7 @@
               <fieldset class="commentpost">
                 <div class="create">
                     <p>
-                      <textarea name="content"></textarea>
+                      <textarea name="content" placeholder="Comment here"></textarea>
                     </p>
                 </div>
                 <p>
