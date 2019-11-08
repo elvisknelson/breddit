@@ -208,7 +208,7 @@ fieldset.createuser{
 }
 
 .logininput input{
-    width: 160px;
+    width: 47%;
     height: 25px;
     margin: 5px 0;
 }
@@ -445,7 +445,7 @@ html{
 
     #hamburgernav{
         display: block;
-        background-color: aliceblue;
+        background-color: #000000bd;
         font-weight: bold;
     }
 
