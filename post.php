@@ -51,7 +51,7 @@
                       <div class="postcontent"><img src="img-posts/<?= $row['imagename'] ?>" alt="Post"></div>
                       <?php endif ?>
                       <?php if($row['posttype'] == 't'): ?>
-                        <div class="postcontent"><p><?= htmlspecialchars_decode($row['post'], ENT_QUOTES) ?></p></div>
+                        <div class="postcontent"><p><?= $row['post'] ?></p></div>
                       <?php endif ?>
                   </div>
                 </div>

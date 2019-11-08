@@ -70,9 +70,13 @@
 
                 <?php if($row['posttype'] == 'l'): ?>
                   <div class="fullimagepost">
-                    <a href="post.php?id=<?= $row['id'] ?>">
+                    <a href="img-posts/<?= $row['imagename'] ?>">
                       <img src="img-posts/<?= $row['imagename'] ?>" alt="Post" class="align">
                     </a>
+                  </div>
+                <?php else: ?>
+                  <div class="fulltextpost">
+                    <div class="textpostcontent"><p><?= $row['post'] ?></p></div>
                   </div>
                 <?php endif ?>
                 

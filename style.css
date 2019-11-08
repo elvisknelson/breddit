@@ -144,9 +144,23 @@ fieldset.createuser{
 .postcontent{
     border: #000000a8 1px solid;
     margin: 0 12px 12px 0;
+    width: 95%;
     background-color: #363636;
     border-radius: 3px;
     display: inline-flex;
+}
+
+.textpostcontent{
+    border: #000000a8 1px solid;
+    width: 100%;
+    background-color: #363636;
+    border-radius: 3px;
+    display: inline-flex;
+}
+
+.textpostcontent p{
+    padding: 10px;
+    margin: 0;
 }
 
 .postcontent img{
@@ -333,6 +347,10 @@ fieldset.createuser{
     background-color: rgba(12, 10, 10, 0.829);
 }
 
+.fulltextpost{
+    display: none   ;
+}
+
 .footer{
     background-color: #363434;
     display: flex;
@@ -376,6 +394,7 @@ html{
     .mobilenav{
         display: flex;
         justify-content: space-around;
+        padding-top: 3px;
         width: 100%;
         height: 2em;
         background-color: #191919;
@@ -394,6 +413,10 @@ html{
         display: none;
     }
 
+    .fulltextpost{
+        display: block;
+    }
+
     .footer{
         display: none;
     }
@@ -404,6 +427,7 @@ html{
 
     .flexdiv{
         min-width: 100%;
+        background-color: #1919195e;
     }
 
     #content{

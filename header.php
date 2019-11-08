@@ -71,7 +71,9 @@
                         </form>
                     <?php endif ?>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="newuser.php">Sign Up</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="create.php?link=1">Submit Link</a>
                 </li>
