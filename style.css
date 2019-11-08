@@ -369,6 +369,10 @@ html{
         display: none;
     }
 
+    .comments{
+        display: none;
+    }
+
     .mobilenav{
         display: flex;
         justify-content: space-around;
