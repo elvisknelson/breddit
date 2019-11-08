@@ -44,15 +44,14 @@
                     $new_image_path       = file_upload_path($image_filename);
 
                     if (file_is_an_image($temporary_image_path, $new_image_path)) 
-                    { 
-                        move_uploaded_file($temporary_image_path, $new_image_path);
+                    {
+                        $newfilename = $username.'_'.$nRows.'.'.pathinfo($image_filename, PATHINFO_EXTENSION);
 
-                        $image = new ImageResize($new_image_path);
+                        move_uploaded_file($temporary_image_path, './img-posts/'.$newfilename);
+
+                        $image = new ImageResize('./img-posts/'.$newfilename);
                         $image->resizeToWidth(75);
                         $image->save('./img-posts/'.$username.'_'.$nRows.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
-
-                        $image = new ImageResize($new_image_path);
-                        $image->save('./img-posts/'.$username.'_'.$nRows.'.'.pathinfo($image_filename, PATHINFO_EXTENSION));
                         $valid = true;
                     }
                 }
@@ -224,11 +223,22 @@
             if (filter_var($_POST['action'], FILTER_VALIDATE_INT)) 
             {
                 $id = $_POST['action'];
-                $query = "DELETE FROM posts WHERE id = :id";
+
+                $delquery = "SELECT imagename, thumbnail FROM content WHERE id = :id";
+                $delvalues = $db->prepare($delquery);
+                $delvalues->bindValue(':id', $id);
+                $delvalues->execute();
+                $delrow = $delvalues->fetch();
+
+                $query = "DELETE FROM content WHERE id = :id";
                 $statement = $db->prepare($query);
                 $statement->bindValue(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
-
+                $file1 = 'img-posts/'.$delrow['imagename'];
+                $file2 = 'img-posts/'.$delrow['thumbnail'];
+                unlink ($file1);
+                unlink ($file2);
+                
                 header('Location: index.php');
             } else 
             {

@@ -24,15 +24,15 @@
               <div class="create">
                 <p>
                   <label for="username">Username</label>
-                  <input name="username" id="newusername" />
+                  <input class="createinput" name="username" id="newusername" />
                 </p>
                 <p>
                   <label for="password1">Password</label>
-                  <input name="password1" type="password" id="newpassword1" />
+                  <input class="createinput" name="password1" type="password" id="newpassword1" />
                 </p>
                 <p>
                   <label for="password2">Re-Enter Password</label>
-                  <input name="password2" type="password" id="newpassword2" />
+                  <input class="createinput" name="password2" type="password" id="newpassword2" />
                 </p>
               </div>
               <p>

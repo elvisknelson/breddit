@@ -383,7 +383,8 @@ html{
 
     #hamburgernav{
         display: block;
-        background-color: lightblue;
+        background-color: aliceblue;
+        font-weight: bold;
     }
 
     .fullimagepost{
