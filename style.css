@@ -356,6 +356,10 @@ fieldset.createuser{
     display: none;
 }
 
+.mobilenav{
+    display: none;
+}
+
 html{
     background-color: #363434;
 }
@@ -365,12 +369,37 @@ html{
         display: none;
     }
 
+    .mobilenav{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        height: 2em;
+        background-color: #191919;
+    }
+
+    .mobilenav a{
+        text-decoration: none;
+        color: aliceblue;
+    }
+
+    .votes{
+        display: none;
+    }
+
     #header{
         display: none;
     }
 
     .footer{
         display: none;
+    }
+
+    .post{
+        padding: 0 15px 0 15px;
+    }
+
+    .flexdiv{
+        min-width: 100%;
     }
 
     #content{
@@ -392,7 +421,8 @@ html{
     }
 
     .fullimagepost img{
-        max-width: 92%;
+        max-width: 100%;
+        min-width: 100%;
     }
 
     fieldset.createpost{

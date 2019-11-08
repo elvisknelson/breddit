@@ -9,7 +9,9 @@
     $sort = $_SESSION['sort'];
   }
 
-  $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid FROM content c JOIN users u ON c.userid = u.id order by $sort desc";
+  $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
+            FROM content c JOIN users u ON c.userid = u.id order by $sort desc";
+
   $values = $db->prepare($query);
   $values->execute();
 ?>
@@ -73,6 +75,15 @@
                     </a>
                   </div>
                 <?php endif ?>
+                
+                <div class="mobilenav">
+                  <div><a class="fas fa-arrow-up" href=""></a></div>
+                  <div><a class="fas fa-arrow-down" href=""></a></div>
+                  <div><a class="fas fa-times" href=""></a></div>
+                  <div><a class="fas fa-star" href=""></a></div>
+                  <div><a class="fas fa-share" href=""></a></div>
+                  <div><a class="fas fa-ellipsis-v" href=""></a></div>
+                </div>
 
               </div>
               
