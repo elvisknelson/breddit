@@ -66,11 +66,13 @@
                   </p>
                 </div>
 
-                <div class="fullimagepost">
-                  <a href="post.php?id=<?= $row['id'] ?>">
-                    <img src="img-posts/<?= $row['imagename'] ?>" alt="Post" class="align">
-                  </a>
-                </div>
+                <?php if($row['posttype'] == 'l'): ?>
+                  <div class="fullimagepost">
+                    <a href="post.php?id=<?= $row['id'] ?>">
+                      <img src="img-posts/<?= $row['imagename'] ?>" alt="Post" class="align">
+                    </a>
+                  </div>
+                <?php endif ?>
 
               </div>
               

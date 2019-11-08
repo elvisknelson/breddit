@@ -83,6 +83,7 @@ fieldset.commentpost {
     margin: 0px 3px;
     width: 700px;
     padding: 14px;
+    width: -webkit-fill-available;
 }
 
 fieldset.createuser{
@@ -390,11 +391,7 @@ html{
     }
 
     .fullimagepost img{
-        max-width: 95%;
-    }
-
-    .post{
-        min-height: 300px;
+        max-width: 92%;
     }
 
     fieldset.createpost{
