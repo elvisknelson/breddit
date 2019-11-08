@@ -344,6 +344,10 @@ fieldset.createuser{
     width: 98%;     
 }
 
+#hamburgernav{
+    display: none;
+}
+
 html{
     background-color: #363434;
 }
@@ -367,6 +371,11 @@ html{
 
     .imagepost{
         display: none;
+    }
+
+    #hamburgernav{
+        display: block;
+        background-color: lightblue;
     }
 
     .fullimagepost{
