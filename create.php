@@ -15,8 +15,8 @@
     <title>breddit</title>
   </head>
   <body>
+    <?php include 'header.php'; ?>
     <div id="wrapper">
-      <?php include 'header.php'; ?>
         <div id="content">
           <form action="process_post.php" method="post" class="createform" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />
@@ -24,16 +24,16 @@
               <div class="create">
                 <p>
                   <label for="title">Title</label>
-                  <input name="title" id="title" />
+                  <input class="createinput" name="title" id="title" />
                 </p>
                 <p>
                   <label for="subbreddit">Subbreddit</label>
-                  <input name="subbreddit" id="title" />
+                  <input class="createinput" name="subbreddit" id="title" />
                 </p>
                 <?php if(isset($_GET['link'])): ?>
                   <p>
                     <label for="content">Image</label>
-                    <input type="file" name="image">
+                    <input class="createfile" type="file" name="image">
                   </p>
                 <?php else: ?>
                   <p>

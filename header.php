@@ -20,6 +20,32 @@
     <title>breddit</title>
 </head>
 <body>
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <input type="text" id="defaultForm-user" class="form-control validate" placeholder="username">
+            </div>
+
+            <div class="md-form mb-4">
+              <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="password">
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-info">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <nav id="hamburgernav" class="navbar navbar-light light-blue lighten-4">
 
 
@@ -32,7 +58,7 @@
                     <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="create.php?link=1">Submit Link</a>

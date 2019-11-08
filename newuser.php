@@ -15,8 +15,8 @@
     <title>breddit</title>
   </head>
   <body>
+    <?php include 'header.php'; ?>
     <div id="wrapper">
-      <?php include 'header.php'; ?>
         <div id="content">
           <form action="process_post.php" method="post" class="createuserform" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />

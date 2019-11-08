@@ -33,8 +33,8 @@
     <title>breddit</title>
   </head>
   <body>
+    <?php include 'header.php'; ?>
     <div id="wrapper">
-        <?php include 'header.php'; ?>
         <div id="content">
             <?php while ($row = $values->fetch()): ?>
                 <div class="post">

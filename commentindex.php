@@ -36,8 +36,8 @@
     <title><?= $subbreddit ?></title>
   </head>
   <body>
+    <?php include 'header.php'; ?>
     <div id="wrapper">
-        <?php include 'header.php'; ?>
 
         <div id="content">
           <div class="post">
