@@ -89,7 +89,7 @@
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
         aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <p class="mobileheader">breddit: the front page of the internet</p>
+        <p class="mobileheader">breddit: the back alley of the internet</p>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent15">
             <ul class="navbar-nav mr-auto">

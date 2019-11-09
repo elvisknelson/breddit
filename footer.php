@@ -12,9 +12,9 @@
 </head>
 <body>
     <div class="footer">
-        <p>Use of this site constitutes acceptance of our User Agreement and Privacy Policy. © 2019 breddit inc. All rights reserved.</p>
-        <p>BREDDIT and the DOPE ALIEN Logo are registered trademarks of breddit inc.</p>
-        <p>Advertise - games</p>
+        <p>This site is purely for demenstration purpuses only. Please don't sue me reddit :)</p>
+        <p>BREDDIT and the DOPE ALIEN Logo are registered trademarks of breddit inc. (not really)</p>
+        <p><a href="https://www.linkedin.com/in/elvis-knelson/">About Me</a></p>
     </div>
 </body>
 </html>
