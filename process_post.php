@@ -137,19 +137,19 @@
                     }
                     else
                     {
-                        header('Location: index.php');
+                        header('Location: index.php?invaliduser');
                     }
 
                     header('Location: index.php');
                 }
                 catch (Exception $e)
                 {
-                    header('Location: index.php');
+                    header('Location: index.php?invaliduser');
                 }
             }
             else
             {
-                header('Location: index.php');
+                header('Location: index.php?invaliduser');
             }
         }
 

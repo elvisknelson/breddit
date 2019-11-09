@@ -45,13 +45,21 @@
                     </div>
                     <div class="flexdiv">
                       <div class="postheader"><h5><?= $row['title'] ?></h5></div>
+
                       <div class="submitted"><p>Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a></p></div>
+                     
                       <div class="comments"><p><a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> <a href="">crosspost <?php if(isset($_SESSION)): ?><a href="">delete<?php endif ?></a></p></div>
+                      
                       <?php if($row['posttype'] == 'l'): ?>
-                      <div class="postcontent"><img src="img-posts/<?= $row['imagename'] ?>" alt="Post"></div>
+                        <div class="postcontent">
+                          <img src="img-posts/<?= $row['imagename'] ?>" alt="Post">
+                        </div>
                       <?php endif ?>
+
                       <?php if($row['posttype'] == 't'): ?>
-                        <div class="postcontent"><p><?= $row['post'] ?></p></div>
+                        <div class="postcontent">
+                          <p><?= $row['post'] ?></p>
+                        </div>
                       <?php endif ?>
                   </div>
                 </div>
