@@ -362,7 +362,7 @@ fieldset.createuser{
 .footer{
     background-color: #363434;
     display: flex;
-    font-size: x-small;
+    font-size: small;
     padding-top: 700px;
     flex-direction: column;
     align-items: center;
