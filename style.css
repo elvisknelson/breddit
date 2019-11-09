@@ -311,6 +311,13 @@ fieldset.createuser{
     text-decoration: none;
 }
 
+.mobileheader{
+    padding-left: 15px;
+    display: inline;
+    font-size: 20px;
+    color: #000000ab;
+}
+
 #header h1{
     margin-bottom: 0;
     font-family: 'Bree Serif', serif;
@@ -460,6 +467,10 @@ html{
         display: block;
         background-color: #000000bd;
         font-weight: bold;
+    }
+
+    .bold{
+        font-weight: 700;
     }
 
     .fullimagepost{
