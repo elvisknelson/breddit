@@ -3,14 +3,32 @@
   require 'utility.php';
   session_start();
 
-  if(!isset($_SESSION['sort'])) {
-    $sort = 'date';
-  } else {
-    $sort = $_SESSION['sort'];
+  if(isset($GET['sort']))
+  {
+    $var = $GET['sort'];
+
+    switch ($var) {
+      case 'new':
+        $postsort = 'date';
+        break;
+      case 'hot':
+        $postsort = 'votes';
+        break;
+      case 'best':
+        $postsort = 'votes';
+        break;
+      case 'top':
+        $postsort = 'votes';
+        break;
+    }
+  }
+  else
+  {
+    $postsort = 'date';
   }
 
   $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
-            FROM content c JOIN users u ON c.userid = u.id order by $sort desc";
+            FROM content c JOIN users u ON c.userid = u.id order by $postsort desc";
 
   $values = $db->prepare($query);
   $values->execute();
@@ -57,7 +75,7 @@
 
               <div class="votes">
                 <a href="process_post.php?vote=1&postid=<?= $row['id'] ?>" class="fa fa-caret-up" style="font-size:25px"></a>
-                <p class="numvotes"><?= thousandsFormat($row['votes'] - $row['downvotes']) ?></p>
+                <p class="numvotes"><?= thousandsFormat($row['votes']) ?></p>
                 <a href="process_post.php?vote=2&postid=<?= $row['id'] ?>" class="fa fa-caret-down" style="font-size:25px"></a>
               </div>
 

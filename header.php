@@ -1,8 +1,33 @@
 <?php
     $user = null;
     $mod = null;
+    $new = $hot = $best = $top = "";
 
-    if(!empty($_SESSION))
+    if(isset($_GET['sort']))
+    {
+        $sort = $_GET['sort'];
+    }
+    else
+    {
+        $sort = 'new';
+    }
+
+    switch ($sort) {
+        case 'new':
+            $new = "active";
+            break;
+        case 'hot':
+            $hot = "active";
+            break;
+        case 'best':
+            $best = "active";
+            break;
+        case 'top':
+            $top = "active";
+            break;
+    }
+
+    if(isset($_SESSION['user']))
     {
         $user = $_SESSION['user']['name'];
         $mod = $_SESSION['user']['mod'] ? 'Moderator' : 'User';
@@ -124,16 +149,13 @@
 
     <div id="header">
         <div class="flex">
-            <a href="index.php"><img src="images/snoo.png" alt="Logo" class="logo"></a>
+            <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo" class="logo"></a>
             <a href="index.php"><h1>breddit</h1></a>
             <ul id="menu">
-                <a href="index.php" class="active"><li>new</li></a>
-                <a href="index.php" class=""><li>hot</li></a>
-                <a href="index.php" class=""><li>best</li></a>
-                <a href="index.php" class=""><li>rising</li></a>
-                <a href="index.php" class=""><li>controversial</li></a>
-                <a href="index.php" class=""><li>top</li></a>
-                <a href="index.php" class=""><li>gilded</li></a>
+                <a href="index.php?sort=new" class="<?= $new ?>"><li>new</li></a>
+                <a href="index.php?sort=hot" class="<?= $hot ?>"><li>hot</li></a>
+                <a href="index.php?sort=best" class="<?= $best ?>"><li>best</li></a>
+                <a href="index.php?sort=top" class="<?= $top ?>"><li>top</li></a>
             </ul>
         </div>
         <?php if($user == null): ?>
@@ -142,7 +164,7 @@
             </div>
         <?php else: ?>
             <div class="loginheader">
-                <p><?= $user ?> | <a href="index.php"><img src="images/snoo.png" alt="Logo"></a> | <?= $mod ?></a></p>
+                <p><?= $user ?> | <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo"></a> | <?= $mod ?></a></p>
             </div>
         <?php endif ?>
     </div>

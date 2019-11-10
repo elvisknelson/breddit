@@ -106,12 +106,15 @@
             $userid = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            $query     = "INSERT INTO comments (content, userid, votes, postid) VALUES (:content, :userid, 1, :postid)";
-            $statement = $db->prepare($query);
-            $statement->bindValue(':content', $content);
-            $statement->bindValue(':userid', $userid);
-            $statement->bindValue(':postid', $postid);
-            $statement->execute();
+            if(trim($content) != "" && !empty($content))
+            {
+                $query     = "INSERT INTO comments (content, userid, votes, postid) VALUES (:content, :userid, 1, :postid)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':content', $content);
+                $statement->bindValue(':userid', $userid);
+                $statement->bindValue(':postid', $postid);
+                $statement->execute();
+            }
 
             header('Location: post.php?id='.$postid.'');
         }
@@ -256,7 +259,7 @@
             if($_GET['vote'] == 1) {
                 $query     = "UPDATE content SET votes = (votes + 1) WHERE id = :id";
             } else {
-                $query     = "UPDATE content SET downvotes = (downvotes + 1) WHERE id = :id";
+                $query     = "UPDATE content SET votes = (votes - 1) WHERE id = :id";
             }
 
             $statement = $db->prepare($query);
