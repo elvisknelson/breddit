@@ -252,14 +252,18 @@
     }
     else
     {
-        if(isset($_GET['vote']))
+        if(isset($_POST['vote']))
         {
-            $postid = $_GET['postid'];
+            $postid = $_POST['vote'];
+            $votetype = $_POST['votetype'];
 
-            if($_GET['vote'] == 1) {
-                $query     = "UPDATE content SET votes = (votes + 1) WHERE id = :id";
-            } else {
-                $query     = "UPDATE content SET votes = (votes - 1) WHERE id = :id";
+            if($votetype == 1)
+            {
+                $query = "UPDATE content SET votes = (votes + 1) WHERE id = :id";
+            }
+            if($votetype == 2)
+            {
+                $query = "UPDATE content SET votes = (votes - 1) WHERE id = :id";
             }
 
             $statement = $db->prepare($query);
@@ -279,17 +283,4 @@
         }
     }
 ?>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-</head>
-<body>
-
-</body>
-</html>
 

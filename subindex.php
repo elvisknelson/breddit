@@ -29,11 +29,7 @@
         <div id="content">
           <?php while ($row = $values->fetch()): ?>
             <div class="post">
-              <div class="votes">
-                  <a href="" class="fa fa-caret-up" style="font-size:25px"></a>
-                  <p class="numvotes"><?= thousandsFormat($row['votes']) ?></p>
-                  <a href="" class="fa fa-caret-down" style="font-size:25px"></a>
-              </div>
+              <?php include 'votes.php'; ?>
               <div class="flexdiv">
                 <div class="postheader"><h5><a href="post.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></h5></div>
                 <div class="submitted"><p>Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a></p></div>

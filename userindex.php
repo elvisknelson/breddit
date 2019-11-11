@@ -28,11 +28,7 @@
         <div id="content">
           <?php while ($row = $values->fetch()): ?>
             <div class="post">
-                <div class="votes">
-                    <a href="" class="fa fa-caret-up" style="font-size:25px"></a>
-                    <p class="numvotes"><?= thousandsFormat($row['votes']) ?></p>
-                    <a href="" class="fa fa-caret-down" style="font-size:25px"></a>
-                </div>
+              <?php include 'votes.php'; ?>
                 <div class="imagepost"><img src="img-posts/<?= $row['thumbnail'] ?>" alt="Post" class="align"></div>
                 <div class="flexdiv">
                   <div class="postheader"><h5><a href="post.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></h5></div>

@@ -16,7 +16,7 @@
     $postStatement = $db->prepare($query);
     $postStatement->bindValue(':postID', $id);
     $postStatement->execute();
-    $post = $postStatement->fetch();
+    $row = $postStatement->fetch();
 
     $query = "SELECT c.id, c.content, c.userid, c.votes, c.postid, u.username FROM comments c JOIN users u ON u.id = c.userid WHERE postid = :postID";
     $values = $db->prepare($query);
@@ -41,21 +41,17 @@
 
         <div id="content">
           <div class="post">
-              <div class="votes">
-                  <a href="" class="fa fa-caret-up" style="font-size:25px"></a>
-                  <p class="numvotes"><?= thousandsFormat($post['votes']) ?></p>
-                  <a href="" class="fa fa-caret-down" style="font-size:25px"></a>
-              </div>
+            <?php include 'votes.php'; ?>
               <div class="flexdiv">
-                <div class="postheader"><h5><a href="post.php?id=<?= $post['id'] ?>"><?= $post['title'] ?></a></h5></div>
-                <div class="submitted"><p>Submitted by: <a href="userindex.php?username=<?= $post['username'] ?>"><?= $post['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $post['subbreddit'] ?>">b/<?= $post['subbreddit'] ?></a></p></div>
-                <div class="comments"><p><a href="commentindex.php?subbreddit=<?= $post['subbreddit'] ?>&postid=<?= $post['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
+                <div class="postheader"><h5><a href="post.php?id=<?= $row['id'] ?>"><?= $row['title'] ?></a></h5></div>
+                <div class="submitted"><p>Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a></p></div>
+                <div class="comments"><p><a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&postid=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
                 <a href="">crosspost</a> <?php if(isset($_SESSION)): ?><a href="">delete<?php endif ?></a></p></div>
-                <?php if($post['posttype'] == 'l'): ?>
-                  <div class="postcontent"><img src="img-posts/<?= $post['imagename'] ?>" alt="Post"></div>
+                <?php if($row['posttype'] == 'l'): ?>
+                  <div class="postcontent"><img src="img-posts/<?= $row['imagename'] ?>" alt="Post"></div>
                 <?php endif ?>
-                <?php if($post['posttype'] == 't'): ?>
-                  <div class="postcontent"><p><?= $post['post'] ?></p></div>
+                <?php if($row['posttype'] == 't'): ?>
+                  <div class="postcontent"><p><?= $row['post'] ?></p></div>
                 <?php endif ?>
             </div>
           </div>
