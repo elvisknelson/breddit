@@ -3,9 +3,9 @@
   require 'utility.php';
   session_start();
 
-  if(isset($GET['sort']))
+  if(isset($_GET['sort']))
   {
-    $var = $GET['sort'];
+    $var = $_GET['sort'];
 
     switch ($var) {
       case 'new':
