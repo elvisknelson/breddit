@@ -3,6 +3,11 @@
   require 'utility.php';
   session_start();
 
+  if(!isset($_SESSION['page']))
+  {
+    $_SESSION['page'] = 1;
+  }
+
   if(isset($_GET['sort']))
   {
     $var = $_GET['sort'];
@@ -27,8 +32,9 @@
     $postsort = 'date';
   }
 
+  $limit = $_SESSION['page'] * 7;
   $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
-            FROM content c JOIN users u ON c.userid = u.id order by $postsort desc";
+            FROM content c JOIN users u ON c.userid = u.id order by $postsort desc LIMIT $limit";
 
   $values = $db->prepare($query);
   $values->execute();
@@ -47,27 +53,11 @@
     <title>breddit</title>
   </head>
   <body>
+    <div style="display: none" id="hideAll">&nbsp;</div>
+    <script type="text/javascript">
+      document.getElementById("hideAll").style.display = "block";
+    </script>
     <?php include 'header.php'; ?>
-    
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <div id="wrapper">
         <div id="content">
@@ -98,8 +88,15 @@
 
                 <div class="comments">
                   <p>
-                    <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> <a href="">save</a> <a href="">share</a> <a href="">give award</a> <a href="">repost</a> 
-                    <a href="">crosspost</a> <?php if($mod == 'Moderator'): ?><a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a><?php endif ?>
+                    <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
+                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
+                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
+                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
+                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
+                    <?php if($mod == 'Moderator'): ?>
+                      <a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
+                    <?php endif ?>
                   </p>
                 </div>
 
@@ -131,8 +128,17 @@
         </div>
         <?php include 'sidebar.php'; ?>
     </div>
+    <div class="loadmore">
+    <form action="process_post.php" method="post">
+      <input type="hidden" name="action" value="submit" />
+      <button class="btn btn-link" type="submit" name="command" value="LoadMore">page: <?= $_SESSION['page'] ?> | load more</button>
+    </form>
+    </div>
     <?php include 'footer.php'; ?>
 
+    <script type="text/javascript">
+      document.getElementById("hideAll").style.display = "none"; 
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>

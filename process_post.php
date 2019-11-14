@@ -119,6 +119,12 @@
             header('Location: post.php?id='.$postid.'');
         }
 
+        if($_POST['command'] == 'LoadMore')
+        {
+            $_SESSION['page'] = $_SESSION['page'] + 1;
+            header('Location: index.php');
+        }
+
         if($_POST['command'] == 'Login')
         {
             if(!empty(trim($_POST['name'])) && !empty(trim($_POST['password'])))

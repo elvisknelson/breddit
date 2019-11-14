@@ -9,7 +9,7 @@
         <a href="javascript:" class="fa fa-caret-down" id="dv<?= $row['id'] ?>" style="font-size:25px" onClick="UpdateRecord(<?= $row['id'] ?>, 2);"></a>
     <?php else: ?>
         <a class="fa fa-caret-up" id="uv<?= $row['id'] ?>" style="font-size:25px"></a>
-        <p class="numvotes" id="<?= $row['id'] ?>"><?= thousandsFormat($row['votes']) ?></p>
+        <p id="<?= $row['id'] ?>" class="numvotes"><?= thousandsFormat($row['votes']) ?></p>
         <a class="fa fa-caret-down" id="dv<?= $row['id'] ?>" style="font-size:25px"></a>
     <?php endif ?>
 </div>

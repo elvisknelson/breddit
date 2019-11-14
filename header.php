@@ -147,8 +147,8 @@
         <ul id="menu">
             <li><a href="index.php?sort=new" class="<?= $new ?>">new</a></li>
             <li><a href="index.php?sort=hot" class="<?= $hot ?>">hot</a></li>
-            <li><a href="index.php?sort=best" class="<?= $best ?>">best</a></li>
-            <li><a href="index.php?sort=top" class="<?= $top ?>">top</a></li>
+            <li><a data-toggle="tooltip" title="Not Implemented Yet" class="<?= $best ?>">best</a></li>
+            <li><a data-toggle="tooltip" title="Not Implemented Yet" class="<?= $top ?>">top</a></li>
         </ul>
     </div>
     <?php if($user == null): ?>
@@ -157,7 +157,8 @@
         </div>
     <?php else: ?>
         <div class="loginheader">
-            <p><?= $user ?> | <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo"></a> | <?= $mod ?></p>
+            <p><a data-toggle="tooltip" title="Not Implemented Yet" href="#"><?= $user ?></a> | <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo"></a> | 
+            <a data-toggle="tooltip" title="Not Implemented Yet" href="#"><?= $mod ?></a></p>
         </div>
     <?php endif ?>
 </div>

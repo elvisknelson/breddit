@@ -1,4 +1,11 @@
 <div id="sidebar">
+    <form action="process_post.php" method="post" class="searchform">
+    <fieldset class="search">
+        <input type="hidden" name="action" value="submit" />
+        <input type="search" q="googlesearch" placeholder="Search breddit">
+        <button class="btn btn-default btn-sm btn-square loginbtn" id="logoutbtn" type="submit" name="command" value="Search">Search</button>
+    </fieldset>
+    </form>
     <form action="process_post.php" method="post" class="loginform">
         <input type="hidden" name="action" value="submit" />
         <fieldset class="login">
@@ -27,6 +34,6 @@
         <div class="submitlink"><a href="create.php?link=1"><p>Submit a new link</p></a></div>
         <div class="submitlink"><a href="create.php?text=1"><p>Submit a new text post</p></a></div>
     <?php endif ?>
-    <a href="https://www.reddit.com/premium"><img src="images/bredditad.png" alt="Img"></a>
+    <a href=""><img src="images/bredditad.png" alt="Img"></a>
 </div>
 

@@ -23,6 +23,9 @@ function UpdateRecord(id, voteType)
        a = document.getElementById('dv'+id);
        a.href = "javascript:";
        document.getElementById('uv'+id).removeAttribute('href');
+       document.getElementById('dv'+id).style.color = "rgb(0, 123, 255)";
+       document.getElementById('uv'+id).style.color = "orange";
+       document.getElementById('dv'+id).removeAttribute('href');
        document.getElementById(id).innerHTML = num;
       }
     });
@@ -49,6 +52,9 @@ function UpdateRecord(id, voteType)
        
        a = document.getElementById('uv'+id);
        a.href = "javascript:";
+       document.getElementById('uv'+id).removeAttribute('href');
+       document.getElementById('uv'+id).style.color = "rgb(0, 123, 255)";
+       document.getElementById('dv'+id).style.color = "orange";
        document.getElementById('dv'+id).removeAttribute('href');
        document.getElementById(id).innerHTML = num;
       }
