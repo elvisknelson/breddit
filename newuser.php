@@ -22,7 +22,7 @@
         $statement = $db->prepare($insertQuery);
         $statement->bindValue(':name', $username);
         $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
-        $statement->bindValue(':moderator', $ismod);
+        $statement->bindValue(':moderator', $true);
         $statement->execute();
 
         $query = "SELECT id FROM users WHERE username = (:user)";
