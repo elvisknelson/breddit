@@ -33,11 +33,29 @@
   }
 
   $limit = $_SESSION['page'] * 7;
-  $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
-            FROM content c JOIN users u ON c.userid = u.id order by $postsort desc LIMIT $limit";
 
-  $values = $db->prepare($query);
-  $values->execute();
+  if(isset($_POST['action']))
+  {
+      if($_POST['command'] == 'Search')
+      {
+        $searchresult = $_POST['searchbar'];
+        $search = "%$searchresult%";
+        $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
+        FROM content c JOIN users u ON c.userid = u.id WHERE c.title LIKE :search order by $postsort desc LIMIT $limit";
+        $values = $db->prepare($query);
+        $values->bindValue(':search', $search);
+        $values->execute();
+      }
+  }
+  else
+  {
+    $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
+    FROM content c JOIN users u ON c.userid = u.id order by $postsort desc LIMIT $limit";
+    $values = $db->prepare($query);
+    $values->execute();
+  }
+
+  
 ?>
 
 <!doctype html>

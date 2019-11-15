@@ -1,8 +1,8 @@
 <div id="sidebar">
-    <form action="process_post.php" method="post" class="searchform">
+    <form action="index.php" method="post" class="searchform">
     <fieldset class="search">
         <input type="hidden" name="action" value="submit" />
-        <input type="search" q="googlesearch" placeholder="Search breddit">
+        <input name="searchbar" type="search" q="googlesearch" placeholder="Search breddit">
         <button class="btn btn-default btn-sm btn-square loginbtn" id="logoutbtn" type="submit" name="command" value="Search">Search</button>
     </fieldset>
     </form>
