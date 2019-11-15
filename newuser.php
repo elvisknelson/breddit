@@ -9,7 +9,7 @@
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
 
-        if($username == 'elfishpro' || $username == 'admin')
+        if($username == 'elfishpro' || $username == 'admin' || $username == 'namename')
         {
             $ismod = true;
         }
