@@ -177,19 +177,19 @@
                 $ismod = false;
             }
 
-            $insertQuery = "INSERT INTO users (username, password, moderator) values (:name, :password, :moderator)";
+            $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:name, :password, :moderator)";
             $statement = $db->prepare($insertQuery);
             $statement->bindValue(':name', $username);
             $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
             $statement->bindValue(':moderator', $ismod);
             $statement->execute();
 
-            $query = "SELECT id FROM users WHERE username = (:user)";
-            $values = $db->prepare($query);
-            $values->bindValue(':user', $username);
-            $values->execute();
-            $row = $values->fetch();
-            $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
+            // $query = "SELECT id FROM users WHERE username = (:user)";
+            // $values = $db->prepare($query);
+            // $values->bindValue(':user', $username);
+            // $values->execute();
+            // $row = $values->fetch();
+            $_SESSION['user'] = [ 'name' => $username, 'id' => 81,'mod' => $ismod ];
 
             header('Location: index.php');
            
