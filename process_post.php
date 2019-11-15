@@ -162,38 +162,38 @@
             }
         }
 
-        if($_POST['command'] == 'Create_User')
-        {
-            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $password1 = $_POST['password1'];
-            $password2 = $_POST['password2'];
+        // if($_POST['command'] == 'Create_User')
+        // {
+        //     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //     $password1 = $_POST['password1'];
+        //     $password2 = $_POST['password2'];
 
-            if($username == 'elfishpro' || $username == 'admin')
-            {
-                $ismod = true;
-            }
-            else
-            {
-                $ismod = false;
-            }
+        //     if($username == 'elfishpro' || $username == 'admin')
+        //     {
+        //         $ismod = true;
+        //     }
+        //     else
+        //     {
+        //         $ismod = false;
+        //     }
 
-            $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:name, :password, :moderator)";
-            $statement = $db->prepare($insertQuery);
-            $statement->bindValue(':name', $username);
-            $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
-            $statement->bindValue(':moderator', $ismod);
-            $statement->execute();
+        //     $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:name, :password, :moderator)";
+        //     $statement = $db->prepare($insertQuery);
+        //     $statement->bindValue(':name', $username);
+        //     $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
+        //     $statement->bindValue(':moderator', $ismod);
+        //     $statement->execute();
 
-            // $query = "SELECT id FROM users WHERE username = (:user)";
-            // $values = $db->prepare($query);
-            // $values->bindValue(':user', $username);
-            // $values->execute();
-            // $row = $values->fetch();
-            $_SESSION['user'] = [ 'name' => $username, 'id' => 81,'mod' => $ismod ];
+        //     $query = "SELECT id FROM users WHERE username = (:user)";
+        //     $values = $db->prepare($query);
+        //     $values->bindValue(':user', $username);
+        //     $values->execute();
+        //     $row = $values->fetch();
+        //     $_SESSION['user'] = [ 'name' => $username, 'id' => 81,'mod' => $ismod ];
 
-            header('Location: index.php');
+        //     header('Location: index.php');
            
-        }
+        // }
 
         if($_POST['command'] == 'Logout')
         {
