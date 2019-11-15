@@ -84,17 +84,20 @@
                 </div>
 
                 <div class="submitted">
-                  <p>Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a></p>
+                  <p>
+                    Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
+                    <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a>
+                  </p>
                 </div>
 
                 <div class="comments">
                   <p>
                     <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
-                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
-                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
-                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
-                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
-                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
                     <?php if($mod == 'Moderator'): ?>
                       <a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
                     <?php endif ?>
@@ -114,12 +117,14 @@
                 <?php endif ?>
                 
                 <div class="mobilenav">
-                  <div><a class="fas fa-arrow-up" href="#"></a></div>
-                  <div><a class="fas fa-arrow-down" href="#"></a></div>
-                  <div><a class="fas fa-times" href="#"></a></div>
-                  <div><a class="fas fa-meteor" href="#"></a></div>
-                  <div><a class="fas fa-share" href="#"></a></div>
-                  <div><a class="fas fa-ellipsis-v" href="#"></a></div>
+                  <div><a class="fas fa-arrow-up" href="javascript:" id="uv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 1);"></a></div>
+                  <div><a class="fas fa-arrow-down" href="javascript:" id="dv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 2);"></a></div>
+                  <?php if($mod == 'Moderator'): ?>
+                    <div><a class="fas fa-times" href="process_post.php?delete=1&postid=<?= $row['id'] ?>"></a></div>
+                  <?php endif ?>
+                  <div><a class="fas fa-meteor" href="javascript:"></a></div>
+                  <div><a class="fas fa-share" href="javascript:"></a></div>
+                  <div><a class="fas fa-ellipsis-v" href="javascript:"></a></div>
                 </div>
 
               </div>
