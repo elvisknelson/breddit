@@ -8,11 +8,11 @@
         $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
-        $ismod = false;
+        $ismod = 0;
 
         if($username == 'elfishpro' || $username == 'admin' || $username == 'namename')
         {
-            $ismod = true;
+            $ismod = 1;
         }
 
         $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:uname, :upassword, :moderator)";
@@ -27,7 +27,7 @@
         // $values->bindValue(':user', $username);
         // $values->execute();
         // $row = $values->fetch();
-        
+
         $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
 
         header('Location: index.php');
