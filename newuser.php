@@ -9,15 +9,15 @@
         $password1 = $_POST['password1'];
         $password2 = $_POST['password2'];
 
-        // if($username == 'elfishpro' || $username == 'admin' || $username == 'namename')
-        // {
-        //     $ismod = true;
-        // }
-        // else
-        // {
-        //     $ismod = false;
-        // }
-        $ismod = true;
+        if($username == 'elfishpro' || $username == 'admin' || $username == 'namename')
+        {
+            $ismod = true;
+        }
+        else
+        {
+            $ismod = false;
+        }
+
         $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:uname, :upassword, :moderator)";
         $statement = $db->prepare($insertQuery);
         $statement->bindValue(':uname', $username);
@@ -30,7 +30,7 @@
         // $values->bindValue(':user', $username);
         // $values->execute();
         // $row = $values->fetch();
-        // $_SESSION['user'] = [ 'name' => $username, 'id' => $,'mod' => true ];
+        $_SESSION['user'] = [ 'name' => $username, 'id' => $,'mod' => $ismod ];
 
         header('Location: index.php');
     }
