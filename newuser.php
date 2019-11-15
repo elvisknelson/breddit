@@ -22,11 +22,11 @@
         $statement->bindValue(':moderator', $ismod);
         $statement->execute();
 
-        // $query = "SELECT id FROM users WHERE username = (:user)";
-        // $values = $db->prepare($query);
-        // $values->bindValue(':user', $username);
-        // $values->execute();
-        // $row = $values->fetch();
+        $query = "SELECT id FROM users WHERE username = (:user)";
+        $values = $db->prepare($query);
+        $values->bindValue(':user', $username);
+        $values->execute();
+        $row = $values->fetch();
 
         $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
 
