@@ -17,11 +17,11 @@
         // {
         //     $ismod = false;
         // }
-
-        $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:name, :password, :moderator)";
+        $ismod = true;
+        $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:uname, :upassword, :moderator)";
         $statement = $db->prepare($insertQuery);
-        $statement->bindValue(':name', $username);
-        $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
+        $statement->bindValue(':uname', $username);
+        $statement->bindValue(':upassword', password_hash($password2, PASSWORD_BCRYPT));
         $statement->bindValue(':moderator', $ismod);
         $statement->execute();
 
