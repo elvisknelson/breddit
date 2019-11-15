@@ -118,10 +118,10 @@
 
                 <?php if($user == null): ?>
                     <li class="nav-item">
-                    <a href="" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="" class="nav-link" data-toggle="modal" data-target="#modalSignupForm">Sign Up</a>
+                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modalSignupForm">Sign Up</a>
                     </li>
                 <?php else: ?>
                     <input type="hidden" name="action" value="submit" />

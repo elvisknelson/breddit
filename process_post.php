@@ -167,15 +167,18 @@
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password1 = $_POST['password1'];
             $password2 = $_POST['password2'];
-            $ismod = false;
 
             if($username == 'elfishpro' || $username == 'admin')
             {
                 $ismod = true;
             }
+            else
+            {
+                $ismod = false;
+            }
 
-            $query     = "INSERT INTO users (username, password, moderator) values (:name, :password, :moderator)";
-            $statement = $db->prepare($query);
+            $insertQuery = "INSERT INTO users (username, password, moderator) values (:name, :password, :moderator)";
+            $statement = $db->prepare($insertQuery);
             $statement->bindValue(':name', $username);
             $statement->bindValue(':password', password_hash($password2, PASSWORD_BCRYPT));
             $statement->bindValue(':moderator', $ismod);

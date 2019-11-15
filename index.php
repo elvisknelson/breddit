@@ -89,11 +89,11 @@
                 <div class="comments">
                   <p>
                     <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
-                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
-                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
-                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
-                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
-                    <a href="" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
+                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
+                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
+                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
+                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
+                    <a href="#" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
                     <?php if($mod == 'Moderator'): ?>
                       <a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
                     <?php endif ?>
@@ -113,12 +113,12 @@
                 <?php endif ?>
                 
                 <div class="mobilenav">
-                  <div><a class="fas fa-arrow-up" href=""></a></div>
-                  <div><a class="fas fa-arrow-down" href=""></a></div>
-                  <div><a class="fas fa-times" href=""></a></div>
-                  <div><a class="fas fa-meteor" href=""></a></div>
-                  <div><a class="fas fa-share" href=""></a></div>
-                  <div><a class="fas fa-ellipsis-v" href=""></a></div>
+                  <div><a class="fas fa-arrow-up" href="#"></a></div>
+                  <div><a class="fas fa-arrow-down" href="#"></a></div>
+                  <div><a class="fas fa-times" href="#"></a></div>
+                  <div><a class="fas fa-meteor" href="#"></a></div>
+                  <div><a class="fas fa-share" href="#"></a></div>
+                  <div><a class="fas fa-ellipsis-v" href="#"></a></div>
                 </div>
 
               </div>
