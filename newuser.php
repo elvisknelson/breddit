@@ -1,38 +1,6 @@
 <?php
   require 'connect.php';
   session_start();
-  if(isset($_POST['action']))
-  {
-    if($_POST['command'] == 'Create_User')
-    {
-        $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $password1 = $_POST['password1'];
-        $password2 = $_POST['password2'];
-        $ismod = 0;
-
-        if($username == 'elfishpro' || $username == 'admin' || $username == 'namename')
-        {
-            $ismod = 1;
-        }
-
-        $insertQuery = "INSERT INTO users (username, password, moderator) VALUES (:uname, :upassword, :moderator)";
-        $statement = $db->prepare($insertQuery);
-        $statement->bindValue(':uname', $username);
-        $statement->bindValue(':upassword', password_hash($password2, PASSWORD_BCRYPT));
-        $statement->bindValue(':moderator', $ismod);
-        $statement->execute();
-
-        $query = "SELECT id FROM users WHERE username = (:user)";
-        $values = $db->prepare($query);
-        $values->bindValue(':user', $username);
-        $values->execute();
-        $row = $values->fetch();
-
-        $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
-
-        header('Location: index.php');
-    }
-  }
 ?>
 
 <!doctype html>
@@ -53,7 +21,7 @@
     <?php include 'header.php'; ?>
     <div id="wrapper">
         <div id="content">
-          <form action="" method="post" class="createuserform" enctype="multipart/form-data">
+          <form action="process_post.php" method="post" class="createuserform" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />
             <fieldset class="createuser">
               <div class="create">
