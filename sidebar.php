@@ -34,6 +34,6 @@
         <div class="submitlink"><a href="create.php?link=1"><p>Submit a new link</p></a></div>
         <div class="submitlink"><a href="create.php?text=1"><p>Submit a new text post</p></a></div>
     <?php endif ?>
-    <a href="#"><img src="images/bredditad.png" alt="Img"></a>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="images/bredditad.png" alt="Img"></a>
 </div>
 

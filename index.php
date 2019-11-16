@@ -2,6 +2,7 @@
   require 'connect.php';
   require 'utility.php';
   session_start();
+  $_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
 
   if(!isset($_SESSION['page']))
   {
@@ -110,7 +111,7 @@
 
                 <div class="comments">
                   <p>
-                    <a href="commentindex.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                    <a href="post.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>

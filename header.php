@@ -132,7 +132,7 @@
                         <a class="nav-lin hamburgeritem" href="create.php?text=1">Submit Text</a>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-link nav-link bold" name="command" value="Logout">Logout (<?= $_SESSION['user']['name'] ?>)</button>
+                        <button class="btn btn-link nav-link bold hamburgeritem" name="command" value="Logout">Logout (<?= $_SESSION['user']['name'] ?>)</button>
                     </li>
                 <?php endif ?>
             </ul>

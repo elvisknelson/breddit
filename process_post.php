@@ -6,7 +6,6 @@
 
     $error = false;
     session_start();
-
     if(isset($_POST['action']))
     {
         if($_POST['command'] == 'Create')
@@ -100,25 +99,6 @@
             }
         }
 
-        if($_POST['command'] == 'Comment')
-        {
-            $postid = filter_input(INPUT_GET, 'postid', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $userid = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-            if(trim($content) != "" && !empty($content))
-            {
-                $query     = "INSERT INTO comments (content, userid, votes, postid) VALUES (:content, :userid, 1, :postid)";
-                $statement = $db->prepare($query);
-                $statement->bindValue(':content', $content);
-                $statement->bindValue(':userid', $userid);
-                $statement->bindValue(':postid', $postid);
-                $statement->execute();
-            }
-
-            header('Location: post.php?id='.$postid.'');
-        }
-
         if($_POST['command'] == 'LoadMore')
         {
             $_SESSION['page'] = $_SESSION['page'] + 1;
@@ -148,8 +128,8 @@
                     {
                         header('Location: index.php?invaliduser');
                     }
-
-                    header('Location: index.php');
+                    $backpage = $_SESSION['redirect_url'];
+                    header("Location: $backpage", true, 303);
                 }
                 catch (Exception $e)
                 {
@@ -195,7 +175,8 @@
         if($_POST['command'] == 'Logout')
         {
             session_destroy();
-            header('Location: index.php');
+            $backpage = $_SESSION['redirect_url'];
+            header("Location: $backpage", true, 303);
         }
         
         if($_POST['command'] == 'Update')
@@ -243,14 +224,9 @@
                 $statement = $db->prepare($query);
                 $statement->bindValue(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
-                $file1 = 'img-posts/'.$delrow['imagename'];
-                $file2 = 'img-posts/'.$delrow['thumbnail'];
-                unlink ($file1);
-                unlink ($file2);
-                
+
                 header('Location: index.php');
-            } else 
-            {
+            } else {
                 header('Location: index.php');
             }    
             
@@ -258,6 +234,25 @@
     }
     else
     {
+        if(isset($_POST['superpostid']))
+        {
+            $postid = $_POST['superpostid'];
+            $userid = $_POST['user'];
+            $content = $_POST['content'];
+
+            if(trim($content) != "" && !empty($content))
+            {
+                $query     = "INSERT INTO comments (content, userid, votes, postid) VALUES (:content, :userid, 1, :postid)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':content', $content);
+                $statement->bindValue(':userid', $userid);
+                $statement->bindValue(':postid', $postid);
+                $statement->execute();
+            }
+
+            header('Location: post.php?id='.$postid.'');
+        }
+
         if(isset($_POST['vote']))
         {
             $postid = $_POST['vote'];
