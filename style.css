@@ -514,6 +514,13 @@ html{
         padding: 0 15px 0 15px;
     }
 
+    .textpostcontent{
+        border-radius: 0px;
+        border: 0;
+        border-top: #000000a8 1.1px solid;
+        border-bottom: #000000a8 1.1px solid;
+    }
+
     .postcontent{
         width: 100%;
         margin: 0;
