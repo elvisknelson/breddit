@@ -7,7 +7,7 @@
     width: 100%;
     display: flex;
     margin-top: 15px;
-    background-color: 0px 0px 5px 0px #00000096;
+    background-color: rgba(39, 39, 39, 0.93);
     min-height: 65px;
 }
 
@@ -516,6 +516,8 @@ html{
 
     .textpostcontent{
         border-radius: 0px;
+        color: white;
+        background-color: #2727276b;
         border: 0;
         border-top: #000000a8 1.1px solid;
         border-bottom: #000000a8 1.1px solid;
