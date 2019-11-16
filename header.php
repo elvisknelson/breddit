@@ -37,7 +37,7 @@
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
 
-        <div class="modal-content">
+        <div class="signupmodal">
 
             <div class="modal-header text-center">
                 <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
@@ -51,11 +51,11 @@
 
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
-                        <input name="name" type="text" id="signinusername" class="form-control validate" placeholder="username">
+                        <input name="name" type="text" id="signinusername" class="signup-form-control validate" placeholder="username">
                     </div>
                     
                     <div class="md-form mb-4">
-                        <input name="password" type="password" id="defaultForm-pass" class="form-control validate" placeholder="password">
+                        <input name="password" type="password" id="defaultForm-pass" class="signup-form-control validate" placeholder="password">
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
 <!-- Sign Up Form -->
 <div class="modal fade" id="modalSignupForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="signupmodal">
         <div class="modal-header text-center">
             <h4 class="modal-title w-100 font-weight-bold">Sign Up</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -82,15 +82,15 @@
             <input type="hidden" name="action" value="submit" />
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
-                    <input name="username" type="text" id="signupusername" class="form-control validate" placeholder="username">
+                    <input name="username" type="text" id="signupusername" class="signup-form-control validate" placeholder="username">
                 </div>
                 
                 <div class="md-form mb-4">
-                    <input name="password1" type="password" id="defaultForm-pass1" class="form-control validate" placeholder="password">
+                    <input name="password1" type="password" id="defaultForm-pass1" class="signup-form-control validate" placeholder="password">
                 </div>
 
                 <div class="md-form mb-4">
-                    <input name="password2" type="password" id="defaultForm-pass2" class="form-control validate" placeholder="confirm password">
+                    <input name="password2" type="password" id="defaultForm-pass2" class="signup-form-control validate" placeholder="confirm password">
                 </div>
 
             </div>
@@ -105,31 +105,31 @@
 <!-- Hamburger Nav -->
 <nav id="hamburgernav" class="navbar navbar-light light-blue lighten-4">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <button class="navbutton navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><i class="navbars fas fa-bars fa-1x"></i></button>
     <p class="mobileheader">breddit: the back alley of the internet</p>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent15">
         <form action="process_post.php" method="post">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link hamburgeritem" href="index.php">Home <span class="sr-only">(current)</span></a>
                 </li>
 
                 <?php if($user == null): ?>
                     <li class="nav-item">
-                    <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+                        <a href="#" class="nav-link hamburgeritem" data-toggle="modal" data-target="#modalLoginForm">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" data-toggle="modal" data-target="#modalSignupForm">Sign Up</a>
+                        <a href="#" class="nav-link hamburgeritem" data-toggle="modal" data-target="#modalSignupForm">Sign Up</a>
                     </li>
                 <?php else: ?>
                     <input type="hidden" name="action" value="submit" />
                     <li class="nav-item">
-                        <a class="nav-link" href="create.php?link=1">Submit Link</a>
+                        <a class="nav-link hamburgeritem" href="create.php?link=1">Submit Link</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="create.php?text=1">Submit Text</a>
+                        <a class="nav-lin hamburgeritem" href="create.php?text=1">Submit Text</a>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-link nav-link bold" name="command" value="Logout">Logout (<?= $_SESSION['user']['name'] ?>)</button>

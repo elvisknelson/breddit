@@ -32,7 +32,6 @@
                 </p>
                 <?php if(isset($_GET['link'])): ?>
                   <p>
-                    <label for="content">Image</label>
                     <input class="createfile" type="file" name="image" accept="image/*">
                   </p>
                 <?php else: ?>
