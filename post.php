@@ -92,7 +92,7 @@
               </p>
           </div>
           <p>
-            <input id="commentbtn" class=".btn-xs" value="Comment" onClick="CreateComment(<?= $id ?>, <?= $logUser ?>, '<?= $loggedUsername ?>');" />
+            <input type="button" id="commentbtn" class=".btn-xs" value="Comment" onClick="CreateComment(<?= $id ?>, <?= $logUser ?>, '<?= $loggedUsername ?>');" />
           </p>
           <?php else: ?>
             <p>
