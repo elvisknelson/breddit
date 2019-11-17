@@ -33,7 +33,7 @@
     $postsort = 'date';
   }
 
-  $limit = $_SESSION['page'] * 7;
+  $limit = $_SESSION['page'] * 10;
 
   if(isset($_POST['action']))
   {
