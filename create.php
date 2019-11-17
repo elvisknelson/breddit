@@ -1,6 +1,10 @@
 <?php
   session_start();
   require 'connect.php';
+
+    $query = "SELECT id, name, moderator FROM subbreddit";
+    $values = $db->prepare($query);
+    $values->execute();
 ?>
 
 <!doctype html>
@@ -27,8 +31,14 @@
                   <input class="createinput" name="title" id="title" />
                 </p>
                 <p>
-                  <label for="subbreddit">Subbreddit</label>
-                  <input class="createinput" name="subbreddit" id="title" />
+                  <label id="subbredditdrop" for="subbreddit">Subbreddit</label>
+                  <!-- <input class="createinput" name="subbreddit" id="title" /> -->
+                  <select id="dropdown" name="subbreddit">
+                    <?php while ($row = $values->fetch()): ?>
+                      <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                    <?php endwhile ?>
+                  </select>
+
                 </p>
                 <?php if(isset($_GET['link'])): ?>
                   <p>
@@ -42,7 +52,7 @@
                 <?php endif ?>
               </div>
               <p>
-                <input type="submit" name="command" value="Create" />
+                <input id="createbtn" type="submit" name="command" value="Create" />
               </p>
             </fieldset>
           </form>

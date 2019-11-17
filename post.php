@@ -12,7 +12,8 @@
       $loggedUsername = $_SESSION['user']['name'];
     }
 
-    $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.posttype, c.imagename, u.username FROM content c JOIN users u ON c.userid = u.id WHERE c.id = :id";
+    $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbredditid, c.posttype, c.imagename, u.username, s.name
+    FROM content c JOIN subbreddit s ON s.id = c.subbredditid  JOIN users u ON c.userid = u.id WHERE c.id = :id";
     $values = $db->prepare($query);
     $values->bindValue(':id', $id);
     $values->execute();
@@ -52,7 +53,7 @@
                   <div class="submitted">
                     <p>
                       Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a>
-                      to <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a>
+                      to <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
                     </p>
                     </div>
                   

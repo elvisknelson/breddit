@@ -80,6 +80,17 @@ form label{
     float: left;
 }
 
+#subbredditdrop{
+    width: 100%;
+}
+
+#dropdown{
+    background-color: #2d2d2d;
+    border-color: cornflowerblue;
+    color: white;
+    width: 100px;
+}
+
 fieldset.login{
     margin: 15px 3px 10px 0;
     background-color: #3e3e3e;
@@ -125,6 +136,14 @@ fieldset.createuser{
     padding: 14px;
     background-color: #484848;
     border: black 1px solid;
+}
+
+#createbtn{
+    margin: 5px;
+    border-radius: 0;
+    color: white;
+    border-color: cornflowerblue;
+    background-color: #2d2d2d;
 }
 
 .create .createinput{

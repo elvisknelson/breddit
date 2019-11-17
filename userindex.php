@@ -6,7 +6,8 @@
 
   $username = $_GET['username'];
 
-  $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username FROM content c JOIN users u ON c.userid = u.id WHERE u.username = (:username)";
+  $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, u.username, s.name
+  FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE u.username = (:username)";
   $values = $db->prepare($query);
   $values->bindValue(':username', $username);
   $values->execute();
@@ -56,13 +57,13 @@
             <div class="submitted">
               <p>
                 Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a>
+                <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
               </p>
             </div>
 
             <div class="comments">
               <p>
-                <a href="post.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                <a href="post.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>

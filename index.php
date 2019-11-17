@@ -41,8 +41,8 @@
       {
         $searchresult = $_POST['searchbar'];
         $search = "%$searchresult%";
-        $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
-        FROM content c JOIN users u ON c.userid = u.id WHERE c.title LIKE :search order by $postsort desc LIMIT $limit";
+        $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, s.name, u.username, u.id AS userid 
+        FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE c.title LIKE :search order by $postsort desc LIMIT $limit";
         $values = $db->prepare($query);
         $values->bindValue(':search', $search);
         $values->execute();
@@ -50,13 +50,11 @@
   }
   else
   {
-    $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbreddit, c.imagename, c.thumbnail, c.posttype, u.username, u.id AS userid 
-    FROM content c JOIN users u ON c.userid = u.id order by $postsort desc LIMIT $limit";
+    $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, s.name, u.username, u.id AS userid 
+    FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id order by $postsort desc LIMIT $limit";
     $values = $db->prepare($query);
     $values->execute();
   }
-
-  
 ?>
 
 <!doctype html>
@@ -105,13 +103,13 @@
                 <div class="submitted">
                   <p>
                     Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                    <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['subbreddit'] ?></a>
+                    <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
                   </p>
                 </div>
 
                 <div class="comments">
                   <p>
-                    <a href="post.php?subbreddit=<?= $row['subbreddit'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                    <a href="post.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
                     <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>

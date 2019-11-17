@@ -66,7 +66,7 @@
                     $subbreddit = filter_input(INPUT_POST, 'subbreddit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $title      = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $content    = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $query     = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbreddit) values (:title, :content, :user, 't', '', 'text.png', 1, 0, :subbreddit)";
+                    $query     = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbredditid) values (:title, :content, :user, 't', '', 'text.png', 1, 0, :subbreddit)";
                     $statement = $db->prepare($query);
                     $statement->bindValue(':title', $title);
                     $statement->bindValue(':user', $row['id']);
@@ -80,7 +80,7 @@
                     {
                         $subbreddit = filter_input(INPUT_POST, 'subbreddit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                         $title      = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                        $query     = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbreddit) values (:title, 'null', :user, 'l', :fileN, :thumbnail, 1, 0, :subbreddit)";
+                        $query     = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbredditid) values (:title, 'null', :user, 'l', :fileN, :thumbnail, 1, 0, :subbreddit)";
                         $statement = $db->prepare($query);
                         $statement->bindValue(':title', $title);
                         $statement->bindValue(':user', $row['id']);

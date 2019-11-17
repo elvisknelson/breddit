@@ -18,7 +18,7 @@
     <div id="wrapper">
         <div id="content">
             <h1>Error Page Not Found</h1>
-            <button type="button" class="btn btn-primary"><a href="index.php">Go Back</a></button>
+            <a href="index.php">Go Back</a>
         </div>
       <?php include 'sidebar.php'; ?>
     </div>
