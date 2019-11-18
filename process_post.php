@@ -10,6 +10,19 @@
     {
         if($_POST['command'] == 'Create')
         {
+            if(isset($_POST['subbredditname']))
+            {
+                $subbreddit = filter_input(INPUT_POST, 'subbredditname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':name', $subbreddit);
+                $statement->bindValue(':mod', $_SESSION['user']['id']);
+                $statement->execute();
+
+                header('Location: index.php');
+            }
+            
             $nRows = $db->query('select count(*) from content')->fetchColumn(); 
             $username = $_SESSION['user']['name'];
 
@@ -178,35 +191,6 @@
             $backpage = $_SESSION['redirect_url'];
             header("Location: $backpage", true, 303);
         }
-        
-        if($_POST['command'] == 'Update')
-        {   
-            if (filter_var($_POST['action'], FILTER_VALIDATE_INT)) 
-            {
-                if(!empty(trim($_POST['title'])) && !empty(trim($_POST['content'])))
-                {
-                    $title     = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $content   = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $id        = $_POST['action'];
-
-                    $query     = "UPDATE posts SET title = :title, post = :content WHERE id = :id";
-                    $statement = $db->prepare($query);
-                    $statement->bindValue(':title', $title);        
-                    $statement->bindValue(':content', $content);
-                    $statement->bindValue(':id', $id, PDO::PARAM_INT);
-                    
-                    $statement->execute();
-                    header('Location: index.php');
-                }
-                else
-                {
-                    $error = true;
-                }
-            } else 
-            {
-                header('Location: index.php');
-            }
-        }
 
         if($_POST['command'] == 'Delete')
         {        
@@ -236,9 +220,9 @@
     {
         if(isset($_POST['superpostid']))
         {
-            $postid = $_POST['superpostid'];
-            $userid = $_POST['user'];
-            $content = $_POST['content'];
+            $postid = filter_input(INPUT_POST, 'superpostid', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $userid = filter_input(INPUT_POST, 'user', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $content = filter_input(INPUT_POST, 'content', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             if(trim($content) != "" && !empty($content))
             {
@@ -253,7 +237,7 @@
             header('Location: post.php?id='.$postid.'');
         }
 
-        if(isset($_POST['vote']))
+        if(isset($_POST['vote']) && filter_var($_POST['vote'], FILTER_VALIDATE_INT) && filter_var($_POST['votetype'], FILTER_VALIDATE_INT))
         {
             $postid = $_POST['vote'];
             $votetype = $_POST['votetype'];
@@ -272,7 +256,7 @@
             $statement->execute();
             header('Location: index.php');
         } 
-        else if(isset($_GET['delete']))
+        else if(isset($_GET['delete']) && filter_var($_GET['postid'], FILTER_VALIDATE_INT))
         {
             $postid = $_GET['postid'];
 

@@ -26,28 +26,43 @@
             <input type="hidden" name="action" value="submit" />
             <fieldset class="createpost">
               <div class="create">
-                <p>
-                  <label for="title">Title</label>
-                  <input class="createinput" name="title" id="title" />
-                </p>
-                <p>
-                  <label id="subbredditdrop" for="subbreddit">Subbreddit</label>
-                  <!-- <input class="createinput" name="subbreddit" id="title" /> -->
-                  <select id="dropdown" name="subbreddit">
-                    <?php while ($row = $values->fetch()): ?>
-                      <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
-                    <?php endwhile ?>
-                  </select>
-
-                </p>
                 <?php if(isset($_GET['link'])): ?>
+                  <p>
+                    <label for="title">Title</label>
+                    <input class="createinput" name="title" id="title" />
+                  </p>
+                  <p>
+                    <label id="subbredditdrop" for="subbreddit">Subbreddit</label>
+                    <select id="dropdown" name="subbreddit">
+                      <?php while ($row = $values->fetch()): ?>
+                        <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                      <?php endwhile ?>
+                    </select>
+                  </p>
                   <p>
                     <input class="createfile" type="file" name="image" accept="image/*">
                   </p>
-                <?php else: ?>
+                <?php elseif(isset($_GET['text'])): ?>
+                  <p>
+                    <label for="title">Title</label>
+                    <input class="createinput" name="title" id="title" />
+                  </p>
+                  <p>
+                    <label id="subbredditdrop" for="subbreddit">Subbreddit</label>
+                    <select id="dropdown" name="subbreddit">
+                      <?php while ($row = $values->fetch()): ?>
+                        <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                      <?php endwhile ?>
+                    </select>
+                  </p>
                   <p>
                     <label for="content">Content</label>
                     <textarea name="content"></textarea>
+                  </p>
+                <?php else: ?>
+                  <p>
+                    <label for="title">Subbreddit Name</label>
+                    <input class="createinput" name="subbredditname" id="title" />
                   </p>
                 <?php endif ?>
               </div>
