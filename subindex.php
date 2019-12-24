@@ -3,10 +3,10 @@
     require 'utility.php';
     session_start();
 
-    $subbreddit = $_GET['subbreddit'];
+    $subbreddit = filter_input(INPUT_GET, 'subbreddit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbredditid, c.thumbnail, c.imagename, c.posttype, u.username, s.name
-    FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE s.name = :subbreddit";
+              FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE s.name = :subbreddit";
     $values = $db->prepare($query);
     $values->bindValue(':subbreddit', $subbreddit);
     $values->execute();
@@ -55,7 +55,7 @@
 
               <div class="submitted">
                 <p>
-                  Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['name'] ?></a> to 
+                  Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
                   <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['name'] ?></a>
                 </p>
               </div>

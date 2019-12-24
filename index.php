@@ -11,7 +11,7 @@
 
   if(isset($_GET['sort']))
   {
-    $var = $_GET['sort'];
+    $var = filter_input(INPUT_GET, 'sort', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     switch ($var) {
       case 'new':
@@ -39,7 +39,7 @@
   {
       if($_POST['command'] == 'Search')
       {
-        $searchresult = $_POST['searchbar'];
+        $searchresult = filter_input(INPUT_POST, 'searchbar', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $search = "%$searchresult%";
         $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, s.name, u.username, u.id AS userid 
         FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE c.title LIKE :search order by $postsort desc LIMIT $limit";

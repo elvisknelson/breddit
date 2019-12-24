@@ -141,8 +141,7 @@
                     {
                         header('Location: index.php?invaliduser');
                     }
-                    $backpage = $_SESSION['redirect_url'];
-                    header("Location: $backpage", true, 303);
+                    header('Location: index.php?validuser');
                 }
                 catch (Exception $e)
                 {
@@ -258,13 +257,38 @@
         } 
         else if(isset($_GET['delete']) && filter_var($_GET['postid'], FILTER_VALIDATE_INT))
         {
-            $postid = $_GET['postid'];
+            if (filter_var($_GET['postid'], FILTER_VALIDATE_INT)) 
+            {
+                $postid = $_GET['postid'];
+            }
+            else
+            {
+                header('Location: index.php');
+            }
 
             $query = "DELETE FROM content WHERE id = :id";
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $postid, PDO::PARAM_INT);
             $statement->execute();
             header('Location: index.php');
+        }
+        else if(isset($_GET['deletecomment']) && filter_var($_GET['commentid'], FILTER_VALIDATE_INT))
+        {
+            if (filter_var($_GET['commentid'], FILTER_VALIDATE_INT)) 
+            {
+                $commentid = $_GET['commentid'];
+            }
+            else
+            {
+                header('Location: index.php');
+            }
+
+            $query = "DELETE FROM comments WHERE id = :id";
+            $statement = $db->prepare($query);
+            $statement->bindValue(':id', $commentid, PDO::PARAM_INT);
+            $statement->execute();
+            $backpage = $_SESSION['redirect_url'];
+            header("Location: $backpage", true, 303);
         }
     }
 ?>

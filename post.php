@@ -2,8 +2,16 @@
     require 'connect.php';
     require 'utility.php';
     session_start();
+    
+    if (filter_var($_GET['id'], FILTER_VALIDATE_INT)) 
+    {
+      $id = $_GET['id'];
+    }
+    else
+    {
+      header('Location: index.php');
+    }
 
-    $id = $_GET['id'];
     $_SESSION['redirect_url'] = "post.php?id=$id";
     
     if(isset($_SESSION['user']))
@@ -110,7 +118,19 @@
             <div class="flexdiv">
               <div class="submitted"><p><a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> <?= $row['votes'] ?> points</p></div>
               <div class="postheader"><p><?= $row['content'] ?></p></div>
-              <div class="comments"><p><a href="javascript:">permalink</a> <a href="javascript:">embed</a> <a href="javascript:">save</a> <a href="javascript:">save-RES</a> <a href="javascript:">report</a> <a href="javascript:">reply</a></div>
+              <div class="comments">
+              <p>
+                <a href="javascript:">permalink</a> 
+                <a href="javascript:">embed</a> 
+                <a href="javascript:">save</a> 
+                <a href="javascript:">save-RES</a> 
+                <a href="javascript:">report</a> 
+                <a href="javascript:">reply</a>
+                <?php if($mod == "Moderator"): ?>
+                  <a href="process_post.php?deletecomment=1&commentid=<?= $row['id'] ?>">delete</a>
+                <?php endif ?>
+              </p>
+              </div>
             </div>
           </div>
         <?php endwhile ?>
