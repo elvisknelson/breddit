@@ -36,6 +36,7 @@ var Ship = (function(){
 		obj.angle = 0;
 		obj.radius = 10;
 		obj.bulletDelay = 0;
+		obj.mineDelay = 0;
 		obj.pos = Vec2D.create(x, y);
 		obj.thrust = Vec2D.create(0, 0);
 		obj.vel = Vec2D.create(0, 0);
@@ -50,6 +51,7 @@ var Ship = (function(){
 		blacklisted: null,
 		radius: null,
 		bulletDelay: null,
+		mineDelay: null,
 
 		update: function() {
 			this.vel.add(this.thrust);
@@ -58,6 +60,11 @@ var Ship = (function(){
 			if(this.bulletDelay > 0)
 			{
 				this.bulletDelay--;
+			}
+
+			if(this.mineDelay > 0)
+			{
+				this.mineDelay--;
 			}
 
 			if(this.vel.getLength() > 4) this.vel.setLength(4);
@@ -207,7 +214,7 @@ var Asteroid = (function () {
 		var obj = Object.create(def);
 		obj.pos = Vec2D.create(x, y);
 		obj.vel = Vec2D.create(0, 0);
-		obj.color = "orange";
+		obj.color = "black";
 		obj.angle = 0;
 		obj.spinDir = (Math.random() > 0.5) ? 0.007 : -0.009;
 		return obj;
@@ -307,6 +314,34 @@ var Rocket = (function() {
 	return {create:create};
 }());
 
+var Mine = (function() {
+	var create = (function(x, y) {
+		var obj = Object.create(def);
+		obj.pos = Vec2D.create(x, y);
+		obj.radius = 10;
+		obj.lightRadius = 10;
+		obj.blinkRate = 0.15;
+		return obj;
+	});
+
+	var def = {
+		pos: null,
+		radius: null,
+		blacklisted: null,
+		angle: null,
+		blinkRate: null,
+
+		update: function() {
+			this.radius += this.blinkRate;
+
+			if(this.radius > 25) this.blinkRate *= -1;
+			if(this.radius < 10) this.blinkRate *= -1;
+		}
+	};
+
+	return {create:create};
+}());
+
 function getAngle(obj1, obj2) {
 	result = Math.atan2(obj1.pos.getY() - obj2.pos.getY(), obj1.pos.getX() - obj2.pos.getX());
 	return result;
@@ -324,7 +359,7 @@ function findClosest() {
 		cur = Math.abs(vec.getLength());
 		if(i == 0) min = cur;
 		
-		if(cur < min)
+		if(cur <= min)
 		{
 			min = cur;
 			result = asteroidPool[i];
@@ -376,6 +411,15 @@ function fireRocket() {
 	}
 }
 
+function launchMine() {
+	if(ship.mineDelay == 0 && minePool.length < 3)
+	{
+		let mine = Mine.create(ship.pos.getX(), ship.pos.getY());
+		minePool.push(mine);
+		ship.mineDelay = 150;
+	}
+}
+
 function checkCollision(obj1, obj2) {
 	let xV = obj1.pos.getX() - obj2.pos.getX();
 	let yV = obj1.pos.getY() - obj2.pos.getY();
@@ -406,10 +450,29 @@ function checkCollisions() {
 		{
 			if(checkCollision(rocket, asteroidPool[i]) && !rocket.blacklisted)
 			{
-				generateAsteroidExplosion(asteroidPool[i]);
+				generateExplosion(asteroidPool[i], "black");
 
 				asteroidPool[i].blacklisted = true;
 				rocket.blacklisted = true;
+				rocket.target = null;
+				generateExplosion(rocket);
+
+				if(asteroidPool[i].radius > 50)
+				{
+					generateAsteroid(asteroidPool[i].pos.getX(), asteroidPool[i].pos.getY(), random(25, 45));
+					generateAsteroid(asteroidPool[i].pos.getX(), asteroidPool[i].pos.getY(), random(25, 45));
+				}
+			}
+		}
+
+		for (let k = 0; k < minePool.length; k++) 
+		{
+			if(checkCollision(minePool[k], asteroidPool[i]) && !minePool[k].blacklisted)
+			{
+				generateExplosion(asteroidPool[i], "black");
+
+				asteroidPool[i].blacklisted = true;
+				minePool[k].blacklisted = true;
 
 				if(asteroidPool[i].radius > 50)
 				{
@@ -419,16 +482,17 @@ function checkCollisions() {
 			}
 		}
 		
-		for (let j = 0; j < bulletPool.length; j++) {
+		for (let j = 0; j < bulletPool.length; j++) 
+		{
 			if(checkCollision(bulletPool[j], asteroidPool[i]) && !bulletPool[j].blacklisted)
 			{
-				generateAsteroidExplosion(asteroidPool[i]);
+				generateExplosion(asteroidPool[i], "black");
 
 				if(asteroidPool[i] == rocket.target)
 				{
-					console.log("New Target Acquired");	
-					
-					rocket.target = findClosest();
+					rocket.blacklisted = true;
+					rocket.target = null;
+					generateExplosion(rocket);
 				}
 				
 				asteroidPool[i].blacklisted = true;
@@ -439,6 +503,30 @@ function checkCollisions() {
 					generateAsteroid(asteroidPool[i].pos.getX(), asteroidPool[i].pos.getY(), random(25, 45));
 					generateAsteroid(asteroidPool[i].pos.getX(), asteroidPool[i].pos.getY(), random(25, 45));
 				}
+			}
+		}
+	}
+}
+
+function renderMines() {
+	if(minePool.length > 0)
+	{
+		var i = minePool.length - 1;
+		
+		for (i; i > -1; --i) {
+			if(!minePool[i].blacklisted)
+			{
+				ctx.beginPath();
+				ctx.strokeStyle = "red";
+				ctx.arc(minePool[i].pos.getX() >> 0, minePool[i].pos.getY() >> 0, minePool[i].radius, 0, Math.PI * 2);
+				ctx.stroke();
+				ctx.closePath();
+
+				ctx.beginPath();
+				ctx.strokeStyle = "red";
+				ctx.arc(minePool[i].pos.getX() >> 0, minePool[i].pos.getY() >> 0, minePool[i].lightRadius, 0, Math.PI * 2);
+				ctx.stroke();
+				ctx.closePath();
 			}
 		}
 	}
@@ -521,7 +609,7 @@ function renderShip() {
 function renderAsteroids() {
 	if(asteroidPool.length > 0)
 	{
-		var points = 6;
+		var points = 8;
 		var i = asteroidPool.length - 1;
 		var disBetween = 6.28 / points;
 		var angle = disBetween;
@@ -546,15 +634,14 @@ function renderAsteroids() {
 
 function render() {
 	ctx.fillStyle = '#565656';
-	ctx.globalAlpha = 0.4;
 	ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-	ctx.globalAlpha = 1;
 
 	renderBullets();
 	renderShip();
 	renderParticles();
 	renderAsteroids();
 	renderRocket();
+	renderMines();
 }
 
 function keyboardInit() {
@@ -563,6 +650,10 @@ function keyboardInit() {
         switch(e.keyCode) {
 			case 82:
 			keyR = true;
+			break;
+
+			case 81:
+			keyQ = true;
 			break;
 
             case 65:
@@ -600,6 +691,10 @@ function keyboardInit() {
 		{
 			case 82:
 			keyR = false;
+			break;
+
+			case 81:
+			keyQ = false;
 			break;
 
 			case 65:
@@ -659,13 +754,30 @@ function generateShipExplosion() {
 	}
 }
 
-function generateAsteroidExplosion(obj) {
+function generateExplosion(obj, color = "orange") {
 	for (let i = 0; i < random(25, 65); i++) {
 		let part = Particle.create(obj.pos.getX(), obj.pos.getY());
-		part.color = "orange";
+		part.color = color;
 		part.vel.setLength(randomNoFloor(1, 3));
 		part.vel.setAngle(randomNoFloor(0, 6.28));
 		particlePool.push(part);
+	}
+}
+
+function updateMines() {
+	if(minePool.length > 0)
+	{
+		for(let i = 0; i < minePool.length; i++)
+		{
+			if(!minePool[i].blacklisted)
+			{
+				minePool[i].update();
+			}
+			if(minePool[i].blacklisted)
+			{
+				minePool.splice(i, 1);
+			}
+		}
 	}
 }
 
@@ -713,8 +825,8 @@ function updateShip() {
 	if(!ship.blacklisted)
 	{
 		ship.update();
-		if(keyLeft) ship.angle -= 0.06;
-		if(keyRight) ship.angle += 0.06;
+		if(keyLeft) ship.angle -= 0.02;
+		if(keyRight) ship.angle += 0.02;
 		
 		if(keyUp)
 		{
@@ -740,6 +852,11 @@ function updateShip() {
 				fireRocket();
 			}
 		}
+
+		if(keyQ)
+		{
+			launchMine();
+		}
 	}
 }
 
@@ -764,10 +881,10 @@ function updateAsteroids() {
 	}
 }
 
-//#region
+//#region Variables
 window.requestAnimationFrame(loop);
 
-var keyLeft, keyRight, keySpace, keyUp, keyDown, keyR = false;
+var keyLeft, keyRight, keySpace, keyUp, keyDown, keyR, keyQ = false;
 var piConversion = Math.PI/180;
 var numAsteroids = 6;
 
@@ -780,6 +897,7 @@ var colors = ["#FF8000", "#FF4614", "#FF8000", "#FF931B", "#FF8000"];
 var particlePool = [];
 var bulletPool = [];
 var asteroidPool = [];
+var minePool = [];
 //#endregion
 
 window.onload = function()
@@ -800,6 +918,7 @@ function loop() {
 	updateAsteroids();
 	updateShip();
 	updateRocket();
+	updateMines();
 
 	checkCollisions();
 
