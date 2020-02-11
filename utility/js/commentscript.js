@@ -18,7 +18,7 @@ function DisplayComment(id, userid, username){
   {
     jQuery.ajax({
       type: "POST",
-      url: "process_post.php",
+      url: "utility/process_post.php",
       data: { 'superpostid': id, 'user': userid, 'content' : content },
       cache: false,
       success: function(response) //Adding Comment Box using javascript

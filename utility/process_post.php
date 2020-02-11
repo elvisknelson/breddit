@@ -1,7 +1,7 @@
 <?php
     require 'connect.php';
-    include 'ImageResize.php';
-    include 'ImageResizeException.php';
+    include '../image_resize/ImageResize.php';
+    include '../image_resize/ImageResizeException.php';
     use Gumlet\ImageResize;
 
     $error = false;
@@ -20,7 +20,7 @@
                 $statement->bindValue(':mod', $_SESSION['user']['id']);
                 $statement->execute();
 
-                header('Location: index.php');
+                header('Location: ../index.php');
             }
             
             $nRows = $db->query('select count(*) from content')->fetchColumn(); 
@@ -59,11 +59,11 @@
                     {
                         $newfilename = $username.'_'.$nRows.'.'.pathinfo($image_filename, PATHINFO_EXTENSION);
 
-                        move_uploaded_file($temporary_image_path, './img-posts/'.$newfilename);
+                        move_uploaded_file($temporary_image_path, '../img-posts/'.$newfilename);
 
-                        $image = new ImageResize('./img-posts/'.$newfilename);
-                        $image->resizeToWidth(75);
-                        $image->save('./img-posts/'.$username.'_'.$nRows.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
+                        $image = new ImageResize('../img-posts/'.$newfilename);
+                        $image->crop(75, 75, true, ImageResize::CROPCENTER);
+                        $image->save('../img-posts/'.$username.'_'.$nRows.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
                         $valid = true;
                     }
                 }
@@ -104,7 +104,7 @@
                     }
                 }
                 
-                header('Location: index.php');
+                header('Location: ../index.php');
             }
             else
             {
@@ -115,7 +115,7 @@
         if($_POST['command'] == 'LoadMore')
         {
             $_SESSION['page'] = $_SESSION['page'] + 1;
-            header('Location: index.php');
+            header('Location: ../index.php');
         }
 
         if($_POST['command'] == 'Login')
@@ -139,18 +139,18 @@
                     }
                     else
                     {
-                        header('Location: index.php?invaliduser');
+                        header('Location: ../index.php?invaliduser');
                     }
-                    header('Location: index.php?validuser');
+                    header('Location: ../index.php?validuser');
                 }
                 catch (Exception $e)
                 {
-                    header('Location: index.php?invaliduser');
+                    header('Location: ../index.php?invaliduser');
                 }
             }
             else
             {
-                header('Location: index.php?invaliduser');
+                header('Location: ../index.php?invaliduser');
             }
         }
 
@@ -181,7 +181,7 @@
     
             $_SESSION['user'] = [ 'name' => $username, 'id' => $row['id'],'mod' => $ismod ];
     
-            header('Location: index.php');
+            header('Location: ../index.php');
         }
 
         if($_POST['command'] == 'Logout')
@@ -208,9 +208,9 @@
                 $statement->bindValue(':id', $id, PDO::PARAM_INT);
                 $statement->execute();
 
-                header('Location: index.php');
+                header('Location: ../index.php');
             } else {
-                header('Location: index.php');
+                header('Location: ../index.php');
             }    
             
         }
@@ -233,7 +233,7 @@
                 $statement->execute();
             }
 
-            header('Location: post.php?id='.$postid.'');
+            header('Location: post_page.php?id='.$postid.'');
         }
 
         if(isset($_POST['vote']) && filter_var($_POST['vote'], FILTER_VALIDATE_INT) && filter_var($_POST['votetype'], FILTER_VALIDATE_INT))
@@ -253,7 +253,7 @@
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $postid);
             $statement->execute();
-            header('Location: index.php');
+            header('Location: ../index.php');
         } 
         else if(isset($_GET['delete']) && filter_var($_GET['postid'], FILTER_VALIDATE_INT))
         {
@@ -263,14 +263,14 @@
             }
             else
             {
-                header('Location: index.php');
+                header('Location: ../index.php');
             }
 
             $query = "DELETE FROM content WHERE id = :id";
             $statement = $db->prepare($query);
             $statement->bindValue(':id', $postid, PDO::PARAM_INT);
             $statement->execute();
-            header('Location: index.php');
+            header('Location: ../index.php');
         }
         else if(isset($_GET['deletecomment']) && filter_var($_GET['commentid'], FILTER_VALIDATE_INT))
         {
@@ -280,7 +280,7 @@
             }
             else
             {
-                header('Location: index.php');
+                header('Location: ../index.php');
             }
 
             $query = "DELETE FROM comments WHERE id = :id";

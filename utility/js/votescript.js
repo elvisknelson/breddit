@@ -4,7 +4,7 @@ function UpdateRecord(id, voteType)
   {
     jQuery.ajax({
       type: "POST",
-      url: "process_post.php",
+      url: "utility/process_post.php",
       data: { 'vote': id, 'votetype': voteType },
       cache: false,
       success: function(response)
@@ -34,7 +34,7 @@ function UpdateRecord(id, voteType)
   {
     jQuery.ajax({
       type: "POST",
-      url: "process_post.php",
+      url: "utility/process_post.php",
       data: { 'vote': id, 'votetype': voteType },
       cache: false,
       success: function(response)

@@ -633,7 +633,7 @@ function renderAsteroids() {
 }
 
 function render() {
-	ctx.fillStyle = '#fff';
+	ctx.fillStyle = '#585858';
 	ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
 	renderBullets();

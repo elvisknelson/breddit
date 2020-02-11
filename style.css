@@ -4,11 +4,9 @@
 
 .post{
     color: aliceblue;
-    width: 100%;
     display: flex;
-    margin-top: 15px;
-    background-color: rgba(39, 39, 39, 0.93);
     min-height: 65px;
+    margin-bottom: 5px;
 }
 
 .postheader h5{
@@ -46,8 +44,17 @@
 }
 
 .searchform{
-    text-align: center;
-    margin-bottom: 2px;
+    border: 1px solid gray;
+    font-size: 13px;
+    font-family: verdana;
+    width: 300px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 6px;
+    padding-right: 25px;
+    padding-left: 9px;
+    vertical-align: middle;
 }
 
 .submitted {
@@ -92,25 +99,34 @@ form label{
 }
 
 fieldset.login{
-    margin: 15px 3px 10px 0;
-    background-color: #3e3e3e;
+    margin: 15px 0px 10px 0;
+    background-color: #262626;
     border: black 1px solid;
-    
 }
 
 fieldset.login *{
     width: -moz-available;
 }
 
-fieldset.search{
-    margin: 15px 3px -10px 0;
-    padding-top: 5px;
-    background-color: #3e3e3e;
-    border: black 1px solid;
+.searchbtn{
+    margin-right: -25px;
+    color: gray;
+    background-color: transparent;
+    border: none;
 }
 
-fieldset.search input{
-    width: 97%;
+.searchfield {
+    background-color: transparent;
+    border: none;
+    width: 255px;
+    outline: none;
+    color: white;
+}
+
+.searchfield:-internal-autofill-selected {
+    background-color: transparent !important;
+    background-image: none !important;
+    color: -internal-light-dark-color(black, white) !important;
 }
 
 fieldset.createpost{
@@ -248,10 +264,11 @@ fieldset.createuser{
 
 .loginbtn{
     margin: 5px;
-    float: right;
     border-radius: 0;
     width: -webkit-fill-available;
     background-color: #545454;
+    color: darkgray;
+    font-weight: bold;
 }
 
 .flexdiv{
@@ -260,9 +277,15 @@ fieldset.createuser{
 }
 
 .logininput input{
-    width: 47%;
-    height: 25px;
-    margin: 5px 0;
+    background-color: #262626;
+    font-family: verdana;
+    color: white;
+    font-size: 11px;
+    border: 1px solid #999;
+    width: 47.4%;
+    margin: 5px 0px 0px 0px;
+    top: 5px;
+    padding: 6px;
 }
 
 .comments{
@@ -302,7 +325,7 @@ fieldset.createuser{
 .loadmore{
     text-align: center;
     padding-top: 50px;
-    background-color: rgb(54, 52, 52);
+    background-color: rgb(38, 38, 38);
 }
 
 .logo{
@@ -332,10 +355,13 @@ fieldset.createuser{
 }
 
 #content{
-    background-color: rgba(39, 39, 39, 0.93);
+    margin: 10px;
+    width: 100%;
+
 }
 
 #wrapper{
+    background-color: rgb(38, 38, 38);
     display: flex;
     flex-wrap: wrap;
 }
@@ -348,15 +374,11 @@ fieldset.createuser{
     text-decoration: none;
 }
 
-#content{
-    width: 82%;
-}
-
 #header{
-    width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: rgba(29, 29, 29, 0.116);
+    background-color: dimgrey;
+    border-bottom: 2px solid #5f99cf;
 }
 
 .navbutton{
@@ -429,25 +451,24 @@ fieldset.createuser{
     padding: 0px 8px 0px 8px;
     font-weight: bold;
     margin-bottom: 0;
-}
-
-#header ul li a{
-    margin-left: 15px;
+    margin-left: 8px;
+    background-color: rgb(38, 38, 38);
 }
 
 #header ul a.active{
     border-left: cornflowerblue 2px solid;
     border-right: cornflowerblue 2px solid;
     border-top: cornflowerblue 2px solid;
-    background-color: rgba(39, 39, 39, 0.93);
+    border-bottom: rgb(38, 38, 38) 2px solid;
+    background-color: rgb(38, 38, 38);
 }
 
 #sidebar{
     float: right;
-    width: 18%;
+    width: 300px;
     height: auto;
 
-    background-color: rgba(12, 10, 10, 0.829);
+    background-color: rgb(38, 38, 38);
 }
 
 .fulltextpost{
@@ -455,7 +476,7 @@ fieldset.createuser{
 }
 
 .footer{
-    background-color: #363434;
+    background-color: rgb(38, 38, 38);
     display: flex;
     font-size: small;
     padding-top: 500px;
@@ -469,8 +490,7 @@ fieldset.createuser{
 }
 
 #sidebar img{
-    margin-left: 3px;
-    width: 98%;     
+        
 }
 
 #hamburgernav{

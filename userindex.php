@@ -1,6 +1,6 @@
 <?php
-  require 'connect.php';
-  require 'utility.php';
+  require 'utility/connect.php';
+  require 'utility/utility.php';
   session_start();
   $_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
 
@@ -33,6 +33,7 @@
     <div id="wrapper">
 
     <div id="content">
+      <?php include 'sidebar.php'; ?>
       <?php while ($row = $values->fetch()): ?>
         <div class="post">
 
@@ -48,7 +49,7 @@
 
             <div class="postheader">
               <h5>
-                <a href="post.php?id=<?= $row['id'] ?>">
+                <a href="post_page.php?id=<?= $row['id'] ?>">
                   <?= $row['title'] ?>
                 </a>
               </h5>
@@ -63,14 +64,14 @@
 
             <div class="comments">
               <p>
-                <a href="post.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                <a href="post_page.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
                 <?php if($mod == 'Moderator'): ?>
-                  <a href="process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
+                  <a href="utility/process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
                 <?php endif ?>
               </p>
             </div>
@@ -91,7 +92,7 @@
               <div><a class="fas fa-arrow-up" href="javascript:" id="uv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 1);"></a></div>
               <div><a class="fas fa-arrow-down" href="javascript:" id="dv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 2);"></a></div>
               <?php if($mod == 'Moderator'): ?>
-                <div><a class="fas fa-times" href="process_post.php?delete=1&postid=<?= $row['id'] ?>"></a></div>
+                <div><a class="fas fa-times" href="utility/process_post.php?delete=1&postid=<?= $row['id'] ?>"></a></div>
               <?php endif ?>
               <div><a class="fas fa-meteor" href="javascript:"></a></div>
               <div><a class="fas fa-share" href="javascript:"></a></div>
@@ -104,7 +105,6 @@
       <?php endwhile ?>
     </div>
 
-    <?php include 'sidebar.php'; ?>
     </div>
     <?php include 'footer.php'; ?>
     <script type="text/javascript">

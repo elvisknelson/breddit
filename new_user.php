@@ -1,5 +1,5 @@
 <?php
-  require 'connect.php';
+  require 'utility/connect.php';
   session_start();
 ?>
 
@@ -21,7 +21,7 @@
     <?php include 'header.php'; ?>
     <div id="wrapper">
         <div id="content">
-          <form action="process_post.php" method="post" class="createuserform" enctype="multipart/form-data">
+          <form action="utility/process_post.php" method="post" class="createuserform" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />
             <fieldset class="createuser">
               <div class="create">
@@ -51,6 +51,6 @@
     </div>
     <?php include 'footer.php'; ?>
 
-    <script src="script.js"></script>
+    <script src="utility/js/script.js"></script>
   </body>
 </html>

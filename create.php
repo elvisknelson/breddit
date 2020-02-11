@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require 'connect.php';
+  require 'utility/connect.php';
 
     $query = "SELECT id, name, moderator FROM subbreddit";
     $values = $db->prepare($query);
@@ -22,7 +22,8 @@
     <?php include 'header.php'; ?>
     <div id="wrapper">
         <div id="content">
-          <form action="process_post.php" method="post" class="createform" enctype="multipart/form-data">
+        <?php include 'sidebar.php'; ?>
+          <form action="utility/process_post.php" method="post" class="createform" enctype="multipart/form-data">
             <input type="hidden" name="action" value="submit" />
             <fieldset class="createpost">
               <div class="create">
@@ -72,7 +73,6 @@
             </fieldset>
           </form>
         </div>
-      <?php include 'sidebar.php'; ?>
     </div>
     <?php include 'footer.php'; ?>
 

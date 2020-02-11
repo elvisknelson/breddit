@@ -46,7 +46,7 @@
                 </button>
             </div>
 
-            <form action="process_post.php" method="post">
+            <form action="utility/process_post.php" method="post">
                 <input type="hidden" name="action" value="submit" />
 
                 <div class="modal-body mx-3">
@@ -78,7 +78,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="process_post.php" method="post">
+        <form action="utility/process_post.php" method="post">
             <input type="hidden" name="action" value="submit" />
             <div class="modal-body mx-3">
                 <div class="md-form mb-5">
@@ -110,7 +110,7 @@
     <p class="mobileheader">breddit: the back alley of the internet</p>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent15">
-        <form action="process_post.php" method="post">
+        <form action="utility/process_post.php" method="post">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link hamburgeritem" href="index.php">Home <span class="sr-only">(current)</span></a>
@@ -153,7 +153,7 @@
     </div>
     <?php if($user == null): ?>
         <div class="loginheader">
-            <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="newuser.php">sign up</a> in seconds. <a href="#">|English|</a></p>
+            <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="new_user.php">sign up</a> in seconds. <a href="#">|English|</a></p>
         </div>
     <?php else: ?>
         <div class="loginheader">
@@ -162,4 +162,4 @@
         </div>
     <?php endif ?>
 </div>
-<script src="focus.js"></script>
+<script src="utility/js/focus.js"></script>

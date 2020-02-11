@@ -1,6 +1,6 @@
 <?php
-    require 'connect.php';
-    require 'utility.php';
+    require 'utility/connect.php';
+    require 'utility/utility.php';
     session_start();
     
     if (filter_var($_GET['id'], FILTER_VALIDATE_INT)) 
@@ -12,7 +12,7 @@
       header('Location: index.php');
     }
 
-    $_SESSION['redirect_url'] = "post.php?id=$id";
+    $_SESSION['redirect_url'] = "post_page.php?id=$id";
     
     if(isset($_SESSION['user']))
     {
@@ -44,16 +44,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
-    <script src="commentscript.js?98"></script>
+    <script src="utility/js/commentscript.js?98"></script>
     <title>breddit</title>
   </head>
   <body>
     <?php include 'header.php'; ?>
     <div id="wrapper">
       <div id="content">
+        <?php include 'sidebar.php'; ?>
         <?php while ($row = $values->fetch()): ?>
             <div class="post">
-              <?php include 'votes.php'; ?>
+              <?php include 'utility/votes.php'; ?>
               
                 <div class="flexdiv">
                   <div class="postheader"><h5><?= $row['title'] ?></h5></div>
@@ -121,13 +122,13 @@
               <div class="comments">
               <p>
                 <a href="javascript:">permalink</a> 
-                <a href="javascript:">embed</a> 
+                <a href="javascript:">embed</a>
                 <a href="javascript:">save</a> 
                 <a href="javascript:">save-RES</a> 
                 <a href="javascript:">report</a> 
                 <a href="javascript:">reply</a>
                 <?php if($mod == "Moderator"): ?>
-                  <a href="process_post.php?deletecomment=1&commentid=<?= $row['id'] ?>">delete</a>
+                  <a href="process_postPage.php?deletecomment=1&commentid=<?= $row['id'] ?>">delete</a>
                 <?php endif ?>
               </p>
               </div>
@@ -135,7 +136,6 @@
           </div>
         <?php endwhile ?>
       </div>
-      <?php include 'sidebar.php'; ?>
     </div>
     <?php include 'footer.php'; ?>
 
