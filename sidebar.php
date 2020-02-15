@@ -11,23 +11,6 @@
     <form action="utility/process_post.php" method="post" class="loginform">
         <input type="hidden" name="action" value="submit" />
         <fieldset class="login">
-            <?php if(isset($_GET['invaliduser'])): ?>
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong>Invalid username and password</strong>
-                </div>
-            <?php elseif(isset($_GET['validuser'])): ?>
-                <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <strong>Login Successful</strong>
-                </div>
-            <?php endif ?>
             <?php if(!isset($_SESSION['user'])): ?>
                 <div class="logininput">
                     <input name="name" type="text" id="loginuser" placeholder="username"/>

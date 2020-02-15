@@ -114,7 +114,6 @@
 
         if($_POST['command'] == 'LoadMore')
         {
-            $_SESSION['page'] = $_SESSION['page'] + 1;
             header('Location: ../index.php');
         }
 

@@ -71,7 +71,7 @@ function DisplayComment(id, userid, username){
 
         postP.innerHTML = content;
         
-        submittedA.setAttribute('href', 'userindex.php?username='+username);
+        submittedA.setAttribute('href', 'user_index.php?username='+username);
         submittedA.innerHTML = username;
         submittedP.appendChild(submittedA);
         submittedP.innerHTML += " 1 points";

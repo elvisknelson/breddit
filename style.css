@@ -326,6 +326,8 @@ fieldset.createuser{
     text-align: center;
     padding-top: 50px;
     background-color: rgb(38, 38, 38);
+    color: white;
+    cursor: pointer;
 }
 
 .logo{
@@ -479,7 +481,7 @@ fieldset.createuser{
     background-color: rgb(38, 38, 38);
     display: flex;
     font-size: small;
-    padding-top: 500px;
+    padding-top: 100px;
     flex-direction: column;
     align-items: center;
     color: aliceblue;

@@ -61,8 +61,8 @@
 
                   <div class="submitted">
                     <p>
-                      Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a>
-                      to <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
+                      Submitted by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a>
+                      to <a href="sub_index.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
                     </p>
                     </div>
                   
@@ -117,7 +117,7 @@
                 <a href="javascript:" class="fa fa-caret-down" style="font-size:25px"></a>
             </div>
             <div class="flexdiv">
-              <div class="submitted"><p><a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> <?= $row['votes'] ?> points</p></div>
+              <div class="submitted"><p><a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> <?= $row['votes'] ?> points</p></div>
               <div class="postheader"><p><?= $row['content'] ?></p></div>
               <div class="comments">
               <p>

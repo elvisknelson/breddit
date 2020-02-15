@@ -1,5 +1,5 @@
 <?php
-    $mod = $_SESSION['user']['mod'];
+    $mod = isset($_SESSION['user']['mod']) ? "Moderator" : "";
 ?>
 <div class="post">
     <?php include 'votes.php'; ?>
@@ -21,8 +21,8 @@
 
         <div class="submitted">
             <p>
-                Submitted 6 hours ago by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
+                Submitted 6 hours ago by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
+                <a href="sub_index.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
             </p>
         </div>
 
@@ -35,7 +35,7 @@
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
                 <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
                 <?php if($mod == 'Moderator'): ?>
-                    <a href="process_postPage.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
+                    <a href="utility/process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
                 <?php endif ?>
             </p>
         </div>

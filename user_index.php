@@ -57,8 +57,8 @@
 
             <div class="submitted">
               <p>
-                Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                <a href="subindex.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
+                Submitted by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
+                <a href="sub_index.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
               </p>
             </div>
 

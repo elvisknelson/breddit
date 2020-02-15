@@ -32,7 +32,7 @@
     <?php include 'header.php'; ?>
     <div id="wrapper">
       <div id="content">
-        <?php include 'sidebar.php'; ?>
+      <?php include 'sidebar.php'; ?>
         <?php while ($row = $values->fetch()): ?>
           <div class="post">
 
@@ -56,8 +56,8 @@
 
               <div class="submitted">
                 <p>
-                  Submitted by: <a href="userindex.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                  <a href="subindex.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['name'] ?></a>
+                  Submitted by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
+                  <a href="sub_index.php?subbreddit=<?= $row['subbreddit'] ?>">b/<?= $row['name'] ?></a>
                 </p>
               </div>
 

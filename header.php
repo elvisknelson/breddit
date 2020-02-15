@@ -147,7 +147,7 @@
         <ul id="menu">
             <li><a href="index.php?sort=new" class="<?= $new ?>">new</a></li>
             <li><a href="index.php?sort=hot" class="<?= $hot ?>">hot</a></li>
-            <li><a data-toggle="tooltip" title="Not Implemented Yet" class="<?= $best ?>">best</a></li>
+            <li><a href="index.php?sort=best" class="<?= $best ?>">best</a></li>
             <li><a href="index.php?sort=top" class="<?= $top ?>">top</a></li>
         </ul>
     </div>
