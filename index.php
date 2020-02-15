@@ -11,9 +11,10 @@
     <?php include 'header.php'; ?>
     
     <div id="wrapper">
-        <div id="content">
-          <?php include 'sidebar.php'; ?>
-        <div id='main'>
+      <div id="content">
+        <?php include 'sidebar.php'; ?>
+        <div id='main'></div>
+      </div>
     </div>
         
     <div class="loadmore">

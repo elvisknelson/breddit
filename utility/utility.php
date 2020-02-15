@@ -31,7 +31,7 @@
       function generatePosts($posts)
       {
             foreach ($posts as $row) {
-                  include '../utility/posts.php';
+                  include 'posts.php';
             }
             
       }

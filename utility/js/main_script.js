@@ -89,6 +89,10 @@ function loadPosts(mouseEvent, result = "?page") {
   xmlhttp.send(null);
 }
 
+function changeTab() {
+  document.getElementById("main").innerHTML = '<?php include "../../footer.php"; ?>';
+}
+
 function main()
 {
   addEventListeners();
@@ -99,6 +103,7 @@ function main()
 function addEventListeners()
 {
   document.getElementById("load").addEventListener("click", loadPosts);
+  document.getElementById("testing").addEventListener("click", changeTab);
 }
 
 document.addEventListener("DOMContentLoaded", main);

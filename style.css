@@ -323,8 +323,8 @@ fieldset.createuser{
 }
 
 .loadmore {
-    margin: 50px auto;
     text-align: -webkit-center;
+    background-color: #262626;
 }
 
 #load{
