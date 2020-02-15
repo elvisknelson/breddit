@@ -76,7 +76,7 @@ function loadPosts(mouseEvent, result = "?page") {
       if (this.readyState == 4 && this.status == 200) {
           if(this.responseText === "")
           {
-              document.getElementsByClassName('loadmore').innerHTML = "Nothing more to show";
+              document.getElementById('load').innerHTML = "Nothing more to show";
           }
           else
           {

@@ -322,12 +322,18 @@ fieldset.createuser{
     display: none;
 }
 
-.loadmore{
-    text-align: center;
-    padding-top: 50px;
-    background-color: rgb(38, 38, 38);
+.loadmore {
+    margin: 50px auto;
+    text-align: -webkit-center;
+}
+
+#load{
     color: white;
+    padding: 5px 75px;
     cursor: pointer;
+    border-radius: 0;
+    background-color: #4a4a4a;
+    font-weight: bold;
 }
 
 .logo{
