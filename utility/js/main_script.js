@@ -1,3 +1,88 @@
+if (window.XMLHttpRequest) {
+  xmlhttp = new XMLHttpRequest();
+} else {
+  xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+
+function loadPosts(mouseEvent, result = "?page") {
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          if(this.responseText === "") {
+              document.getElementById('load').innerHTML = "Nothing more to show";
+          } else {
+              document.getElementById('main').innerHTML += this.responseText;
+          }
+      }
+    };
+
+  xmlhttp.open("GET", "utility/get_posts.php" + result);
+  xmlhttp.send(null);
+}
+
+function main()
+{
+  addEventListeners();
+  loadPosts(null, "?initial");
+  document.getElementById("hideAll").style.display = "none";
+}
+
+function addEventListeners()
+{
+  document.getElementById("load").addEventListener("click", loadPosts);
+}
+
+function focusTextbox()
+{
+    document.getElementById('loginuser').focus();
+}
+
+document.addEventListener("DOMContentLoaded", main);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // function updateRecord(id, voteType)
 // {
 //   if(voteType == 1 && document.getElementById('uv'+id) == "javascript:")
@@ -62,48 +147,3 @@
 //   }
      
 // }
-
-
-function loadPosts(mouseEvent, result = "?page") {
-  
-  if (window.XMLHttpRequest) {
-    xmlhttp = new XMLHttpRequest();
-  } else {
-    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-  xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          if(this.responseText === "")
-          {
-              document.getElementById('load').innerHTML = "Nothing more to show";
-          }
-          else
-          {
-              document.getElementById('main').innerHTML += this.responseText;
-          }
-      }
-    };
-
-  xmlhttp.open("GET", "utility/get_posts.php" + result);
-  xmlhttp.send(null);
-}
-
-function changeTab() {
-  document.getElementById("main").innerHTML = '<?php include "../../footer.php"; ?>';
-}
-
-function main()
-{
-  addEventListeners();
-  loadPosts(null, "?initial");
-  document.getElementById("hideAll").style.display = "none";
-}
-
-function addEventListeners()
-{
-  document.getElementById("load").addEventListener("click", loadPosts);
-  document.getElementById("testing").addEventListener("click", changeTab);
-}
-
-document.addEventListener("DOMContentLoaded", main);

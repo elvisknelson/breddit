@@ -1,27 +1,23 @@
 <?php
-    $user = null;
-    $mod = null;
-    $new = $hot = $best = $top = "";
+    $user = $mod = $new = $hot = $best = $top = "";
 
-    if(isset($_GET['sort']))
-    {
+    if(isset($_GET['sort'])) {
         $sort = $_GET['sort'];
-    } else
-    {
-        $sort = 'new';
+    } else {
+        $sort = $_SESSION['sort'];
     }
 
     switch ($sort) {
-        case 'new':
+        case 'date':
             $new = "active";
             break;
-        case 'hot':
+        case 'votes':
             $hot = "active";
             break;
-        case 'best':
+        case 'downvotes':
             $best = "active";
             break;
-        case 'top':
+        case 'posttype':
             $top = "active";
             break;
     }
@@ -140,20 +136,27 @@
     </div>
 </nav>
 
+<div id="quicknav">
+    <p><a href="">MY SUBREDDITS</a> - DASHBOARD - POPULAR - ALL - RANDOM - USERS - EDIT | 
+        add shortcuts from the my subreddits menu at left or click the button by the subreddit name, 
+        drag and drop to sort
+    </p>
+</div>
+
 <div id="header">
     <div class="flex">
         <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo" class="logo"></a>
         <a href="index.php"><h1>breddit</h1></a>
         <ul id="menu">
-            <li><a href="index.php?sort=new" class="<?= $new ?>">new</a></li>
-            <li><a href="index.php?sort=hot" class="<?= $hot ?>">hot</a></li>
-            <li><a href="index.php?sort=best" class="<?= $best ?>">best</a></li>
-            <li><a href="index.php?sort=top" class="<?= $top ?>">top</a></li>
+            <li><a href="index.php?sort=date" class="<?= $new ?>">new</a></li>
+            <li><a href="index.php?sort=votes" class="<?= $hot ?>">best</a></li>
+            <li><a href="index.php?sort=downvotes" class="<?= $best ?>">worst</a></li>
+            <li><a href="index.php?sort=posttype" class="<?= $top ?>">type</a></li>
         </ul>
     </div>
     <?php if($user == null): ?>
         <div class="loginheader">
-            <p>Want to join? <a href="javascript:focus()">Log in</a> or <a href="new_user.php">sign up</a> in seconds. <a href="#">|English|</a></p>
+            <p>Want to join? <a href="javascript:focusTextbox()">Log in</a> or <a href="new_user.php">sign up</a> in seconds. <a href="#">|English|</a></p>
         </div>
     <?php else: ?>
         <div class="loginheader">

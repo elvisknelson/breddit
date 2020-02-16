@@ -15,7 +15,7 @@
     $limit = 15;
     
     $query = "SELECT c.id, c.title, c.post, c.votes, c.downvotes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, c.date, s.name, u.username, u.id AS userid 
-    FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id GROUP BY c.id LIMIT ".$limit." OFFSET ".$_SESSION['page'] * $limit;
+    FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id GROUP BY c.id ORDER BY ".$_SESSION['sort']." DESC LIMIT ".$limit." OFFSET ".$_SESSION['page'] * $limit;
 
     $posts = pullData($query);
     generatePosts($posts);

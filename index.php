@@ -1,5 +1,14 @@
 <?php
   session_start();
+  if(!isset($_SESSION['sort'])) {
+    $_SESSION['sort'] = "c.date";
+  }
+  else {
+    if(isset($_GET['sort']))
+    {
+      $_SESSION['sort'] = $_GET['sort'];
+    }
+  }
 ?>
 
 <!doctype html>
@@ -13,7 +22,9 @@
     <div id="wrapper">
       <div id="content">
         <?php include 'sidebar.php'; ?>
-        <div id='main'></div>
+        <div id='main'>
+        
+        </div>
       </div>
     </div>
         

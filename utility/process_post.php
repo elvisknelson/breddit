@@ -186,8 +186,8 @@
         if($_POST['command'] == 'Logout')
         {
             session_destroy();
-            $backpage = $_SESSION['redirect_url'];
-            header("Location: $backpage", true, 303);
+            // $backpage = $_SESSION['redirect_url'];
+            header("Location: ../index.php", true, 303);
         }
 
         if($_POST['command'] == 'Delete')

@@ -40,6 +40,6 @@
     </div>
     <?php include 'footer.php'; ?>
 
-    <script src="utility/js/script.js"></script>
+    <script src="utility/js/validation_script.js"></script>
   </body>
 </html>

@@ -28,11 +28,15 @@
             return $result;
       }
 
+      function switchTab()
+      {
+            include '../new_user.php';
+      }
+
       function generatePosts($posts)
       {
             foreach ($posts as $row) {
                   include 'posts.php';
             }
-            
       }
 ?>
