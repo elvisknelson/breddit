@@ -1,12 +1,16 @@
 <?php
   session_start();
+  $_SESSION['postCount'] = 0;
+
   if(!isset($_SESSION['sort'])) {
-    $_SESSION['sort'] = "c.date";
+    $_SESSION['sort'] = "date";
   }
   else {
-    if(isset($_GET['sort']))
-    {
+    if(isset($_GET['sort'])) {
       $_SESSION['sort'] = $_GET['sort'];
+    }
+    else {
+      $_SESSION['sort'] = "date";
     }
   }
 ?>
@@ -15,8 +19,7 @@
 <html lang="en">
   <?php include 'head.php' ?>
   <body>
-    <div style="display: none" id="hideAll">&nbsp;</div>
-    <script type="text/javascript">document.getElementById("hideAll").style.display = "none";</script>
+    <div style="display: block" id="hideAll">&nbsp;</div>
     <?php include 'header.php'; ?>
     
     <div id="wrapper">

@@ -344,12 +344,29 @@ fieldset.createuser{
 
 .votes{
     float: left;
-    margin: 0px 35px 0 7px;
-    max-height: 65px;
+    margin: 0px 65px 0 7px;
     max-width: 16px;
-    justify-items: center;
-    display: inline-grid;
+    align-items: center;
+    display: flex;
     text-decoration: none;
+}
+
+#voteDiv{
+    text-align: center;
+    min-width: 30px;
+}
+
+#row{
+    margin-right: 30px;
+    width: -webkit-fill-available;
+}
+
+#row h1{
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 0;
+    color: gray;
 }
 
 .numvotes{
@@ -400,6 +417,11 @@ fieldset.createuser{
     height: 18px;
     line-height: 18px;
     margin-left: 7px;
+}
+
+#quicknav p a {
+    color: black;
+    text-decoration: none;
 }
 
 .navbutton{
@@ -510,10 +532,6 @@ fieldset.createuser{
     margin: 0;
 }
 
-#sidebar img{
-        
-}
-
 #hamburgernav{
     display: none;
 }
@@ -537,6 +555,10 @@ html{
         display: none;
     }
 
+    #quicknav {
+        display: none;
+    }
+
     .comments{
         display: none;
     }
@@ -551,12 +573,12 @@ html{
         padding-top: 3px;
         width: 100%;
         height: 2em;
-        background-color: #383838;
+        background-color: #545454;
     }
 
     .mobilenav a{
         text-decoration: none;
-        color: #c0c0c0;
+        color: #b7b7b7;
     }
 
     .votes{

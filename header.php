@@ -137,7 +137,7 @@
 </nav>
 
 <div id="quicknav">
-    <p><a href="">MY SUBREDDITS</a> - DASHBOARD - POPULAR - ALL - RANDOM - USERS - EDIT | 
+    <p>MY SUBREDDITS - <a href="">DASHBOARD</a> - <a href="">POPULAR</a> - <a href="">ALL</a> - <a href="">RANDOM</a> - <a href="">USERS</a> - <a href="">EDIT</a> | 
         add shortcuts from the my subreddits menu at left or click the button by the subreddit name, 
         drag and drop to sort
     </p>
@@ -165,4 +165,3 @@
         </div>
     <?php endif ?>
 </div>
-<script src="utility/js/focus.js"></script>

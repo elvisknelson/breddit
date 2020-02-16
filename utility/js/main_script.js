@@ -4,6 +4,20 @@ if (window.XMLHttpRequest) {
   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
+function addVote(postId, voteType) {
+  var url = 'utility/add_vote.php';
+  var params = '?postId=' + postId + "&voteType=" + voteType;
+  xmlhttp.open('POST', url, true);
+
+  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  xmlhttp.onreadystatechange = function() {
+      if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          alert(xmlhttp.responseText);
+      }
+  }
+  xmlhttp.send(params);
+}
 
 function loadPosts(mouseEvent, result = "?page") {
   xmlhttp.onreadystatechange = function() {
@@ -12,6 +26,7 @@ function loadPosts(mouseEvent, result = "?page") {
               document.getElementById('load').innerHTML = "Nothing more to show";
           } else {
               document.getElementById('main').innerHTML += this.responseText;
+              document.getElementById("hideAll").style.display = "none";
           }
       }
     };
@@ -24,7 +39,6 @@ function main()
 {
   addEventListeners();
   loadPosts(null, "?initial");
-  document.getElementById("hideAll").style.display = "none";
 }
 
 function addEventListeners()
