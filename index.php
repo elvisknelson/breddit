@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $_SESSION['postCount'] = 0;
 
   if(!isset($_SESSION['sort'])) {
     $_SESSION['sort'] = "date";

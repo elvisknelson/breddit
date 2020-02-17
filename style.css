@@ -273,7 +273,6 @@ fieldset.createuser{
 
 .flexdiv{
     min-width: 25%;
-    max-width: 75%;
 }
 
 .logininput input{
@@ -297,10 +296,6 @@ fieldset.createuser{
     font-size: 10px;
 }
 
-.postheader{
-    margin: 6px 0 0 0;
-}
-
 .postheader a{
     text-decoration: none;
     color: white;
@@ -315,7 +310,6 @@ fieldset.createuser{
 .imagepost{
     margin: 0px 12px 0 0;
     display: flex;
-    align-items: center;
 }
 
 .fullimagepost{
@@ -346,7 +340,6 @@ fieldset.createuser{
     float: left;
     margin: 0px 65px 0 7px;
     max-width: 16px;
-    align-items: center;
     display: flex;
     text-decoration: none;
 }
@@ -358,6 +351,7 @@ fieldset.createuser{
 
 #row{
     margin-right: 30px;
+    margin-top: 27px;
     width: -webkit-fill-available;
 }
 

@@ -1,8 +1,8 @@
 <?php
     require 'connect.php';
 
-    $postId = filter_input(INPUT_POST, 'postId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $voteType = filter_input(INPUT_POST, 'voteType', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $voteType = $_POST['voteType'];
+    $postId = $_POST['postId'];
 
     if($voteType == 1)
     {

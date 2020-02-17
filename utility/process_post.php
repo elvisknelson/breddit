@@ -23,7 +23,8 @@
                 header('Location: ../index.php');
             }
             
-            $nRows = $db->query('select count(*) from content')->fetchColumn(); 
+            $imageId = $db->query('select MAX(id) from content')->fetchColumn();
+            $imageId += 1;
             $username = $_SESSION['user']['name'];
 
             if(!empty(trim($_POST['title'])))
@@ -57,13 +58,13 @@
 
                     if (file_is_an_image($temporary_image_path, $new_image_path)) 
                     {
-                        $newfilename = $username.'_'.$nRows.'.'.pathinfo($image_filename, PATHINFO_EXTENSION);
+                        $newfilename = $username.'_'.$imageId.'.'.pathinfo($image_filename, PATHINFO_EXTENSION);
 
                         move_uploaded_file($temporary_image_path, '../img-posts/'.$newfilename);
 
                         $image = new ImageResize('../img-posts/'.$newfilename);
                         $image->crop(75, 75, true, ImageResize::CROPCENTER);
-                        $image->save('../img-posts/'.$username.'_'.$nRows.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
+                        $image->save('../img-posts/'.$username.'_'.$imageId.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
                         $valid = true;
                     }
                 }
@@ -97,8 +98,8 @@
                         $statement = $db->prepare($query);
                         $statement->bindValue(':title', $title);
                         $statement->bindValue(':user', $row['id']);
-                        $statement->bindValue(':fileN', $username.'_'.$nRows.'.'.pathinfo($image_filename, PATHINFO_EXTENSION));
-                        $statement->bindValue(':thumbnail', $username.'_'.$nRows.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
+                        $statement->bindValue(':fileN', $username.'_'.$imageId.'.'.pathinfo($image_filename, PATHINFO_EXTENSION));
+                        $statement->bindValue(':thumbnail', $username.'_'.$imageId.'_thumbnail.'.pathinfo($image_filename, PATHINFO_EXTENSION));
                         $statement->bindValue(':subbreddit', $subbreddit);
                         $statement->execute();
                     }

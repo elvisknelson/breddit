@@ -6,14 +6,14 @@ if (window.XMLHttpRequest) {
 
 function addVote(postId, voteType) {
   var url = 'utility/add_vote.php';
-  var params = '?postId=' + postId + "&voteType=" + voteType;
+  var params = 'postId=' + postId + "&voteType=" + voteType;
   xmlhttp.open('POST', url, true);
 
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
   xmlhttp.onreadystatechange = function() {
       if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          alert(xmlhttp.responseText);
+        document.getElementById(postId).innerHTML = "I'M A GENIUS";
       }
   }
   xmlhttp.send(params);
