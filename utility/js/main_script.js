@@ -13,7 +13,7 @@ function addVote(postId, voteType) {
 
   xmlhttp.onreadystatechange = function() {
       if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        document.getElementById(postId).innerHTML = "I'M A GENIUS";
+        
       }
   }
   xmlhttp.send(params);

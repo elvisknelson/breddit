@@ -145,8 +145,7 @@
 
 <div id="header">
     <div class="flex">
-        <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo" class="logo"></a>
-        <a href="index.php"><h1>breddit</h1></a>
+        <a href="index.php"><img src="images/logo.png" alt="Logo" class="logo"></a>
         <ul id="menu">
             <li><a href="index.php?sort=date" class="<?= $new ?>">new</a></li>
             <li><a href="index.php?sort=votes" class="<?= $hot ?>">best</a></li>

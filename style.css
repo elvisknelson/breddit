@@ -252,6 +252,38 @@ fieldset.createuser{
     background-color: #303030;
 }
 
+.expandobtntext{
+    background-image: url("images/ExpandoButtonText.png");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.expandobtntext:hover{
+    background-image: url("images/ExpandoButtonTextHover.png");
+    cursor: pointer;
+}
+
+.expandobtnlink{
+    background-image: url("images/ExpandoButton.png");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin: 2px 10px 0 0;
+}
+
+.expandobtnlink:hover{
+    background-image: url("images/ExpandoButtonHover.png");
+    cursor: pointer;
+}
+
+.extendoimage{
+    width: 1000px;
+}
+
 .submitlink p{
     padding: 3px;
 }
@@ -331,8 +363,7 @@ fieldset.createuser{
 }
 
 .logo{
-    width: 50px;
-    height: 50px;
+    margin: 3px;
     float: left;
 }
 
@@ -397,7 +428,7 @@ fieldset.createuser{
     display: flex;
     justify-content: space-between;
     background-color: dimgrey;
-    border-bottom: 2px solid #5f99cf;
+    border-bottom: 1px solid #5f99cf;
 }
 
 #quicknav{
@@ -493,9 +524,9 @@ fieldset.createuser{
 }
 
 #header ul a.active{
-    border-left: cornflowerblue 2px solid;
-    border-right: cornflowerblue 2px solid;
-    border-top: cornflowerblue 2px solid;
+    border-left: cornflowerblue 1px solid;
+    border-right: cornflowerblue 1px solid;
+    border-top: cornflowerblue 1px solid;
     border-bottom: rgb(38, 38, 38) 2px solid;
     background-color: rgb(38, 38, 38);
 }

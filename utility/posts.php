@@ -19,25 +19,33 @@
             </h5>
         </div>
 
-        <div class="submitted">
-            <p>
-                Submitted 6 hours ago by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
-                <a href="sub_index.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
-            </p>
-        </div>
+        <div>
+            <?php if($row['posttype'] == 'l'): ?>
+                <a class="expandobtnlink"></a>
+            <?php else: ?>
+                <a class="expandobtntext"></a>
+            <?php endif ?>
+            
+            <div class="submitted">
+                <p>
+                    Submitted 6 hours ago by: <a href="user_index.php?username=<?= $row['username'] ?>"><?= $row['username'] ?></a> to 
+                    <a href="sub_index.php?subbreddit=<?= $row['name'] ?>">b/<?= $row['name'] ?></a>
+                </p>
+            </div>
 
-        <div class="comments">
-            <p>
-                <a href="post_page.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
-                <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
-                <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
-                <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
-                <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
-                <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
-                <?php if($mod == 'Moderator'): ?>
-                    <a href="utility/process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
-                <?php endif ?>
-            </p>
+            <div class="comments">
+                <p>
+                    <a href="post_page.php?subbreddit=<?= $row['name'] ?>&id=<?= $row['id'] ?>">comments</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">save</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">share</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">give award</a>
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">repost</a> 
+                    <a href="javascript:" data-toggle="tooltip" title="Not Implemented Yet">crosspost</a> 
+                    <?php if($mod == 'Moderator'): ?>
+                        <a href="utility/process_post.php?delete=1&postid=<?= $row['id'] ?>">delete</a>
+                    <?php endif ?>
+                </p>
+            </div>
         </div>
 
         <?php if($row['posttype'] == 'l'): ?>
@@ -53,6 +61,8 @@
                 </div>
             </div>
         <?php endif ?>
+
+        <!-- <img src="img-posts/<?= $row['imagename'] ?>" alt="" class="extendoimage" /> -->
 
         <div class="mobilenav">
             <div><a class="fas fa-arrow-up" href="javascript:" id="uv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 1);"></a></div>
