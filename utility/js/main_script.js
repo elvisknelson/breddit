@@ -41,6 +41,16 @@ function main()
   loadPosts(null, "?initial");
 }
 
+function showExpando(id, btnId){
+  let img = document.getElementById(id);
+
+  if(img.style.display == 'block'){
+    document.getElementById(id).style.display = "none";
+  } else {
+    document.getElementById(id).style.display = "block";
+  }
+}
+
 function addEventListeners()
 {
   document.getElementById("load").addEventListener("click", loadPosts);

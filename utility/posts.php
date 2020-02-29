@@ -21,9 +21,9 @@
 
         <div>
             <?php if($row['posttype'] == 'l'): ?>
-                <a class="expandobtnlink"></a>
+                <a class="expandobtnlink" id="expandobtn<?= $row['id'] ?>" onclick="showExpando('expando<?= $row['id'] ?>', 'expandobtn<?= $row['id'] ?>')"></a>
             <?php else: ?>
-                <a class="expandobtntext"></a>
+                <a class="expandobtntext" id="expandobtn<?= $row['id'] ?>" onclick="showExpando('expando<?= $row['id'] ?>', 'expandobtn<?= $row['id'] ?>')"></a>
             <?php endif ?>
             
             <div class="submitted">
@@ -62,7 +62,15 @@
             </div>
         <?php endif ?>
 
-        <!-- <img src="img-posts/<?= $row['imagename'] ?>" alt="" class="extendoimage" /> -->
+        <?php if($row['posttype'] == 'l'): ?>
+            <img src="img-posts/<?= $row['imagename'] ?>" id="expando<?= $row['id'] ?>" class="extendoimage" style="display: none" />
+        <?php else: ?>
+            <div id="expando<?= $row['id'] ?>" class="extendoimage" style="display: none">
+                <div class="textpostcontent">
+                    <p><?= $row['post'] ?></p>
+                </div>
+            </div>
+        <?php endif ?>
 
         <div class="mobilenav">
             <div><a class="fas fa-arrow-up" href="javascript:" id="uv<?= $row['id'] ?>" onClick="UpdateRecord(<?= $row['id'] ?>, 1);"></a></div>

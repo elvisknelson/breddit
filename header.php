@@ -151,6 +151,7 @@
             <li><a href="index.php?sort=votes" class="<?= $hot ?>">best</a></li>
             <li><a href="index.php?sort=downvotes" class="<?= $best ?>">worst</a></li>
             <li><a href="index.php?sort=posttype" class="<?= $top ?>">type</a></li>
+            <li><a href="javascript:" class="<?= $top ?>">show images</a></li>
         </ul>
     </div>
     <?php if($user == null): ?>

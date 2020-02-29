@@ -182,11 +182,10 @@ fieldset.createuser{
 }
 
 .loginheader{
-    background-color: #545454;
+    background-color: rgb(51, 51, 51);
     display: inline-table;
-    border-radius: 0px 0px 10px 10px;
-    color: aliceblue;
-    font-size: 13px;
+    color: gray;
+    font-size: 12px;
 }
 
 .loginheader img{
@@ -200,7 +199,7 @@ fieldset.createuser{
 }
 
 .loginheader a{
-    color: #ff4500;
+    color: cornflowerblue;
     font-weight: bold;
 }
 
@@ -519,6 +518,7 @@ fieldset.createuser{
     color: cornflowerblue;
     padding: 0px 8px 0px 8px;
     font-weight: bold;
+    font-size: 14px;
     margin-bottom: 0;
     margin-left: 8px;
     background-color: rgb(38, 38, 38);
