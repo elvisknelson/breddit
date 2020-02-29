@@ -512,6 +512,7 @@ fieldset.createuser{
     list-style-type: none;
     margin-bottom: -2px;
     align-self: flex-end;
+    padding: 0 0 0 20px;
 }
 
 #header ul li a{
