@@ -631,12 +631,16 @@ html{
         display: none;
     }
 
-    .postheader, .submitted{
-        padding: 0 0 5px 11px;
+    .postheader{
+        padding: 7px 10px 5px 10px;
+    }
+
+    .submitted{
+        padding: 0px 10px 5px 10px;
     }
 
     .post{
-        padding: 0 15px 0 15px;
+        padding: 0 5px;
     }
 
     .textpostcontent{
