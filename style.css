@@ -581,6 +581,14 @@ html{
         display: none;
     }
 
+    .expandobtntext{
+        display: none;
+    }
+    
+    .expandobtnlink{
+        display: none;
+    }
+
     #quicknav {
         display: none;
     }
