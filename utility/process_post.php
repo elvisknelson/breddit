@@ -10,6 +10,15 @@
     {
         if($_POST['command'] == 'Create')
         {
+            if(isset($_POST['API']))
+            {
+                $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
+                $statement = $db->prepare($query);
+                $statement->bindValue(':name', $subbreddit);
+                $statement->bindValue(':mod', 'Elvis The God';
+                $statement->execute();
+            }
+
             if(isset($_POST['subbredditname']))
             {
                 $subbreddit = filter_input(INPUT_POST, 'subbredditname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
