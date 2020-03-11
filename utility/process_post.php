@@ -17,7 +17,7 @@
                 $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
                 $statement = $db->prepare($query);
                 $statement->bindValue(':name', $subbreddit);
-                $statement->bindValue(':mod', 'Elvis The God');
+                $statement->bindValue(':mod', 22);
                 $statement->execute();
             }
 
