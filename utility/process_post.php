@@ -12,6 +12,8 @@
         {
             if(isset($_POST['API']))
             {
+                $subbreddit = filter_input(INPUT_POST, 'subbredditname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
                 $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
                 $statement = $db->prepare($query);
                 $statement->bindValue(':name', $subbreddit);
