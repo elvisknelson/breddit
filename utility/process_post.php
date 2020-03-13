@@ -14,7 +14,7 @@
             {
                 $title      = $_POST['title'];
                 $imageName = $_POST['url'];
-                $query      = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbredditid) values (:title, 'null', 18, 'l', :fileN, :thumb, 1, 0, 3)";
+                $query      = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbredditid) values (:title, 'null', 22, 'l', :fileN, :thumb, 1, 0, 3)";
                 $statement = $db->prepare($query);
                 $statement->bindValue(':title', $title);
                 $statement->bindValue(':fileN', $imageName);
