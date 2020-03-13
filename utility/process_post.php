@@ -12,8 +12,10 @@
         {
             if(isset($_POST['API']))
             {
-                $query = "INSERT INTO subbreddit (name, moderator) VALUES ('BigBootyBirches', true)";
+                $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
                 $statement = $db->prepare($query);
+                $statement->bindValue(':name', 'BigBootBirches');
+                $statement->bindValue(':mod', true);
                 $statement->execute();
 
                 // $title      = $_POST['title'];
