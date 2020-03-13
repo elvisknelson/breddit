@@ -12,10 +12,13 @@
         {
             if(isset($_POST['API']))
             {
-                $query = "INSERT INTO subbreddit (name, moderator) VALUES (:name, :mod)";
+                $title      = $_POST['title'];
+                $imageName = $_POST['url'];
+                $query      = "INSERT INTO content (title, post, userid, posttype, imagename, thumbnail, votes, downvotes, subbredditid) values (:title, 'null', 18, 'l', :fileN, :thumb, 1, 0, 3)";
                 $statement = $db->prepare($query);
-                $statement->bindValue(':name', 'ThatNewNew');
-                $statement->bindValue(':mod', 22);
+                $statement->bindValue(':title', $title);
+                $statement->bindValue(':fileN', $imageName);
+                $statement->bindValue(':thumb', $imageName);
                 $statement->execute();
             }
 

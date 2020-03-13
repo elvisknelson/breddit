@@ -2,11 +2,12 @@
     $mod = isset($_SESSION['user']['mod']) ? "Moderator" : "";
 ?>
 <div class="post">
+
     <?php include 'votes.php'; ?>
 
     <div class="imagepost">
-        <a href="img-posts/<?= $row['imagename'] ?>">
-        <img src="img-posts/<?= $row['thumbnail'] ?>" alt="Post" class="align">
+        <a href="<?= $row['imagename'] ?>">
+        <img src="<?= $row['thumbnail'] ?>" alt="Post" class="align">
         </a>
     </div>
 
@@ -51,7 +52,7 @@
         <?php if($row['posttype'] == 'l'): ?>
             <div class="fullimagepost">
                 <a href="img-posts/<?= $row['imagename'] ?>">
-                    <img src="img-posts/<?= $row['imagename'] ?>" alt="Post" class="align">
+                    <img src="<?= $row['imagename'] ?>" alt="Post" class="postthumb">
                 </a>
             </div>
         <?php else: ?>
@@ -62,8 +63,9 @@
             </div>
         <?php endif ?>
 
+        <!-- Expando Image -->
         <?php if($row['posttype'] == 'l'): ?>
-            <img src="img-posts/<?= $row['imagename'] ?>" id="expando<?= $row['id'] ?>" class="extendoimage" style="display: none" />
+            <img src="<?= $row['imagename'] ?>" draggable="false" id="expando<?= $row['id'] ?>" class="extendoimage" style="display: none" />
         <?php else: ?>
             <div id="expando<?= $row['id'] ?>" class="extendoimage" style="display: none">
                 <div class="textpostcontent">

@@ -4,6 +4,10 @@ if (window.XMLHttpRequest) {
   xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
+var isDragging = false;
+var curWidth = 0;
+var mouseX = 0;
+
 function addVote(postId, voteType) {
   var url = 'utility/add_vote.php';
   var params = 'postId=' + postId + "&voteType=" + voteType;
@@ -24,6 +28,7 @@ function loadPosts(mouseEvent, result = "?page") {
       if (this.readyState == 4 && this.status == 200) {
           if(this.responseText === "") {
               document.getElementById('load').innerHTML = "Nothing more to show";
+              document.getElementById("hideAll").style.display = "none";
           } else {
               document.getElementById('main').innerHTML += this.responseText;
               document.getElementById("hideAll").style.display = "none";
@@ -35,21 +40,48 @@ function loadPosts(mouseEvent, result = "?page") {
   xmlhttp.send(null);
 }
 
-function main()
+function main(e)
 {
   addEventListeners();
   loadPosts(null, "?initial");
 }
 
-function showExpando(id, btnId){
+
+
+function showExpando(id){
   let img = document.getElementById(id);
 
   if(img.style.display == 'block'){
     document.getElementById(id).style.display = "none";
   } else {
-    document.getElementById(id).style.display = "block";
+    expandoImg = document.getElementById(id);
+    expandoImg.style.display = "block";
+
+    expandoImg.addEventListener("mousedown", e => {
+      curWidth = expandoImg.clientWidth;
+      mouseX = e.clientX;
+      isDragging = true;
+    });
+
+    expandoImg.addEventListener("mousemove", e => {
+      if(isDragging)
+      {
+        expandoImg.style.setProperty('width', curWidth + (e.clientX - mouseX) + "px");
+      }
+    });
+
+    expandoImg.addEventListener("mouseleave", e => {
+      if(isDragging)
+      {
+        isDragging = false;
+      }
+    });
   }
 }
+
+window.addEventListener('mouseup', e => {
+  isDragging = false;
+});
 
 function addEventListeners()
 {
@@ -62,9 +94,6 @@ function focusTextbox()
 }
 
 document.addEventListener("DOMContentLoaded", main);
-
-
-
 
 
 

@@ -79,7 +79,7 @@
                   
                   <?php if($row['posttype'] == 'l'): ?>
                     <div class="postcontent">
-                      <img src="img-posts/<?= $row['imagename'] ?>" alt="Post">
+                      <img src="<?= $row['imagename'] ?>" alt="Post">
                     </div>
                   <?php endif ?>
 
