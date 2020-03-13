@@ -46,8 +46,6 @@ function main(e)
   loadPosts(null, "?initial");
 }
 
-
-
 function showExpando(id){
   let img = document.getElementById(id);
 
