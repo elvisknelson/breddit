@@ -1,6 +1,4 @@
 <?php
-    require 'connect.php';
-
     $voteType = $_POST['voteType'];
     $postId = $_POST['postId'];
 

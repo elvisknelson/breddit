@@ -10,7 +10,7 @@ var mouseX = 0;
 
 function addVote(postId, voteType) {
   var url = 'utility/add_vote.php';
-  var params = 'postId=' + postId + "&voteType=" + voteType;
+  var params = 'postId=' + postId + '&voteType=' + voteType;
   xmlhttp.open('POST', url, true);
 
   xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -19,6 +19,24 @@ function addVote(postId, voteType) {
       if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         
       }
+  }
+  xmlhttp.send(params);
+}
+
+function login() {
+  var url = 'utility/login.php';
+  let user = document.getElementById('loginuser').value;
+  let password = document.getElementById('loginpassword').value;
+  var params = 'user=' + user + '&password=' + password;
+  xmlhttp.open('POST', url, true);
+
+  xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      alert(this.responseText);
+    } else {
+    }
   }
   xmlhttp.send(params);
 }
@@ -84,11 +102,12 @@ window.addEventListener('mouseup', e => {
 function addEventListeners()
 {
   document.getElementById("load").addEventListener("click", loadPosts);
+  document.getElementById("loginbutton").addEventListener("click", login);
 }
 
 function focusTextbox()
 {
-    document.getElementById('loginuser').focus();
+  document.getElementById('loginuser').focus();
 }
 
 document.addEventListener("DOMContentLoaded", main);

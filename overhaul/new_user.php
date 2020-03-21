@@ -1,5 +1,4 @@
 <?php
-  require 'utility/connect.php';
   session_start();
 ?>
 

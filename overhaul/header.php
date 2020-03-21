@@ -154,14 +154,6 @@
             <li><a href="javascript:" class="<?= $top ?>">show images</a></li>
         </ul>
     </div>
-    <?php if($user == null): ?>
-        <div class="loginheader">
-            <p>Want to join? <a href="javascript:focusTextbox()">Log in</a> or <a href="new_user.php">sign up</a> in seconds. <a href="#">|English|</a></p>
-        </div>
-    <?php else: ?>
-        <div class="loginheader">
-            <p><a data-toggle="tooltip" title="Not Implemented Yet" href="#"><?= $user ?></a> | <a href="index.php"><img src="images/bredditsnoo.png" alt="Logo"></a> | 
-            <a data-toggle="tooltip" title="Not Implemented Yet" href="#"><?= $mod ?></a></p>
-        </div>
-    <?php endif ?>
+    <div class="loginheader">
+    </div>
 </div>

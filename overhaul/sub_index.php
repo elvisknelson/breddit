@@ -1,16 +1,14 @@
 <?php
-  require 'utility/connect.php';
-  require 'utility/utility.php';
-  session_start();
-  $_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+    require 'utility/utility.php';
+    session_start();
 
-  $username = $_GET['username'];
+    $subbreddit = filter_input(INPUT_GET, 'subbreddit', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-  $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbredditid, c.imagename, c.thumbnail, c.posttype, u.username, s.name
-  FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE u.username = (:username)";
-  $values = $db->prepare($query);
-  $values->bindValue(':username', $username);
-  $values->execute();
+    $query = "SELECT c.id, c.title, c.post, c.votes, c.userid, c.subbredditid, c.thumbnail, c.imagename, c.posttype, u.username, s.name
+              FROM content c JOIN subbreddit s ON s.id = c.subbredditid JOIN users u ON c.userid = u.id WHERE s.name = :subbreddit";
+    $values = $db->prepare($query);
+    $values->bindValue(':subbreddit', $subbreddit);
+    $values->execute();
 ?>
 
 <!doctype html>
@@ -21,6 +19,7 @@
     <script type="text/javascript">
       document.getElementById("hideAll").style.display = "block";
     </script> 
+
     <?php include 'header.php'; ?>
     <div id="wrapper">
       <div id="content">
@@ -30,7 +29,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="loadmore">
       <a id="load">Load More</a>
     </div>

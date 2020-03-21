@@ -1,6 +1,7 @@
 <?php
       function thousandsFormat($num) 
       {
+            include 'connect.php';
             if($num>1000) 
             {
                   $x = round($num);
@@ -19,8 +20,7 @@
 
       function pullData($query)
       {
-            require_once 'connect.php';
-
+            include 'connect.php';
             $values = $db->prepare($query);
             $values->execute();
             $result = $values->fetchAll();
@@ -30,7 +30,6 @@
 
       function switchTab()
       {
-            include '../new_user.php';
       }
 
       function generatePosts($posts)

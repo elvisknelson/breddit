@@ -1,38 +1,11 @@
-<?php
-  session_start();
-
-  if(!isset($_SESSION['sort'])) {
-    $_SESSION['sort'] = "date";
-  }
-  else {
-    if(isset($_GET['sort'])) {
-      $_SESSION['sort'] = $_GET['sort'];
-    }
-    else {
-      $_SESSION['sort'] = "date";
-    }
-  }
-?>
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <?php include 'head.php' ?>
-  <body>
-    <div style="display: block" id="hideAll">&nbsp;</div>
-    <?php include 'header.php'; ?>
-    
-    <div id="wrapper">
-      <div id="content">
-        <?php include 'sidebar.php'; ?>
-        <div id='main'>
-        
-        </div>
-      </div>
-    </div>
-        
-    <div class="loadmore">
-      <a id="load">Load More</a>
-    </div>
-    <?php include 'footer.php'; ?>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>breddit</title>
+</head>
+<body>
+    <h1>Under Construction</h1>
+</body>
 </html>

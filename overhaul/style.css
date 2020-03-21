@@ -75,7 +75,6 @@ form.createform{
 form.createuserform{
     color: aliceblue;
     display: flex;
-    justify-content: center;
 }
 
 #newcomment{
@@ -98,13 +97,13 @@ form label{
     width: 100px;
 }
 
-fieldset.login{
+div.login{
     margin: 15px 0px 10px 0;
     background-color: #262626;
     border: black 1px solid;
 }
 
-fieldset.login *{
+div.login *{
     width: -moz-available;
 }
 
@@ -284,10 +283,6 @@ fieldset.createuser{
     cursor: pointer;
 }
 
-.extendoimage{
-    width: 1000px;
-}
-
 .submitlink p{
     padding: 3px;
 }
@@ -308,7 +303,7 @@ fieldset.createuser{
 }
 
 .flexdiv{
-    min-width: 25%;
+    min-width: 75%;
 }
 
 .logininput input{
@@ -369,7 +364,7 @@ fieldset.createuser{
 }
 
 .logo{
-    margin: 3px;
+    margin-left: 3px;
     float: left;
 }
 

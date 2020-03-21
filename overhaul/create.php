@@ -1,10 +1,10 @@
 <?php
   session_start();
-  require 'utility/connect.php';
+  include 'connect.php';
 
-    $query = "SELECT id, name, moderator FROM subbreddit";
-    $values = $db->prepare($query);
-    $values->execute();
+  $query = "SELECT id, name, moderator FROM subbreddit";
+  $values = $db->prepare($query);
+  $values->execute();
 ?>
 
 <!doctype html>
