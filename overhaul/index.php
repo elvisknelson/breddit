@@ -1,6 +1,6 @@
 <?php
   session_start();
-
+ 
   if(!isset($_SESSION['sort'])) {
     $_SESSION['sort'] = "date";
   }
